@@ -107,6 +107,7 @@
   }
   .badge.time{ color: var(--brand-gold); }
   .badge.prep{ color: var(--brand-red); border: 1px solid var(--brand-red); }
+  .badge.diet{ color: var(--brand-gold); border: 1px solid var(--brand-gold); }
   .empty{
     text-align: center;
     color: var(--brand-text-dim);
@@ -145,6 +146,15 @@
       <span class="chip" data-prep="no">Sin prep. previa</span>
     </div>
   </div>
+
+  <div class="filter-group">
+    <span class="label">Dieta</span>
+    <div class="chip-row" id="dietFilters">
+      <span class="chip active" data-diet="all">Todas</span>
+      <span class="chip" data-diet="vegetariana">Vegetariana</span>
+      <span class="chip" data-diet="vegana">Vegana</span>
+    </div>
+  </div>
 </div>
  
 <div class="grid" id="grid"></div>
@@ -176,23 +186,34 @@
       allergens: ["gluten"], // trazas por la morcilla (pan rallado como relleno habitual)
       timeMinutes: 45,
       requiresPrep: true,
-      prepText: "Caldo de huesos hecho con antelación (mín. 4h)"
+      prepText: "Caldo de huesos hecho con antelación (mín. 4h)",
+      diet: "ninguna" // lleva carne
     },
     {
       title: "Paella Valenciana Tradicional",
       file: "recetas/paella-valenciana.html",
       allergens: [],
       timeMinutes: 70,
-      requiresPrep: false
+      requiresPrep: false,
+      diet: "ninguna" // lleva pollo y conejo
     },
     {
       title: "Lubina al horno sobre cama de patatas panaderas",
       file: "recetas/lubina-horno-patatas-panaderas.html",
       allergens: ["pescado", "gluten", "sulfitos"], // pescado: la lubina y el fumet · gluten: harina de la salsa · sulfitos: vino blanco
       timeMinutes: 60,
-      requiresPrep: false
+      requiresPrep: false,
+      diet: "ninguna" // lleva pescado
     }
   ];
+
+  // "vegana" implica también "vegetariana"
+  function dietMatches(recipeDiet, filter){
+    if (filter === "all") return true;
+    if (filter === "vegetariana") return recipeDiet === "vegetariana" || recipeDiet === "vegana";
+    if (filter === "vegana") return recipeDiet === "vegana";
+    return true;
+  }
  
   function timeCategory(min){
     if (min < 30) return "short";
@@ -205,6 +226,7 @@
   let excludedAllergens = new Set();
   let timeFilter = "all";
   let prepFilter = "all";
+  let dietFilter = "all";
  
   // render chips de alérgenos
   const allergenFiltersEl = document.getElementById("allergenFilters");
@@ -241,6 +263,16 @@
       render();
     });
   });
+
+  // chips de dieta (selección única; "vegana" también cumple el filtro "vegetariana")
+  document.querySelectorAll("#dietFilters .chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      document.querySelectorAll("#dietFilters .chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      dietFilter = chip.dataset.diet;
+      render();
+    });
+  });
  
   document.getElementById("searchInput").addEventListener("input", (e) => {
     searchTerm = e.target.value.trim().toLowerCase();
@@ -257,6 +289,7 @@
       if (timeFilter !== "all" && timeCategory(r.timeMinutes) !== timeFilter) return false;
       if (prepFilter === "yes" && !r.requiresPrep) return false;
       if (prepFilter === "no" && r.requiresPrep) return false;
+      if (!dietMatches(r.diet, dietFilter)) return false;
       return true;
     });
  
@@ -275,11 +308,16 @@
         return `<span class="badge">${a.emoji} ${a.label}</span>`;
       }).join("");
  
+      const dietBadge = r.diet === "vegana" ? `<span class="badge diet">🌱 Vegana</span>`
+        : r.diet === "vegetariana" ? `<span class="badge diet">🌱 Vegetariana</span>`
+        : "";
+
       card.innerHTML = `
         <h2>${r.title}</h2>
         <div class="badges">
           <span class="badge time">⏱ ${r.timeMinutes} min</span>
           ${r.requiresPrep ? `<span class="badge prep">⚠ ${r.prepText}</span>` : ""}
+          ${dietBadge}
           ${allergenBadges}
         </div>
       `;
