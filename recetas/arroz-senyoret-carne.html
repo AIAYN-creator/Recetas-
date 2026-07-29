@@ -90,8 +90,9 @@
   }
   td.full{ text-align: center; font-weight: 700; background: rgba(255,255,255,0.03); }
   td.ing{ text-align: left; }
-  td.step{ text-align: center; color: var(--text-dim); }
-  td.step.strong{ color: var(--text); font-weight: 600; }
+  td.step{ text-align: center; }
+  td.step .prep{ display: block; color: var(--text-dim); }
+  td.step .cook{ display: block; color: var(--text); font-weight: 600; margin-top: 6px; }
   td.final{ text-align: center; font-weight: 600; }
 
   .qty{ color: var(--brand-gold); font-weight: 700; }
@@ -146,13 +147,12 @@
 </div>
 
 <table>
-  <tr><td class="full" data-step="1" colspan="4">Tener el caldo de huesos hirviendo aparte, bien concentrado y colado</td></tr>
-  <tr><td class="full" data-step="1" colspan="4">Salpimentar y secar bien las carnes</td></tr>
+  <tr><td class="full" data-step="1" colspan="3">Tener el caldo de huesos hirviendo aparte, bien concentrado y colado</td></tr>
+  <tr><td class="full" data-step="1" colspan="3">Salpimentar y secar bien las carnes</td></tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="300" data-unit="g">300</span> g costilla de cerdo deshuesada</td>
-    <td class="step" data-step="2" rowspan="3">trocear en dados de 3 cm</td>
-    <td class="step strong" data-step="2" rowspan="3">dorar por tandas a fuego fuerte, 4–5 min · reservar</td>
+    <td class="step" data-step="2" rowspan="3"><span class="prep">trocear en dados de 3 cm</span><span class="cook">dorar por tandas a fuego fuerte, 4–5 min · reservar</span></td>
     <td class="final" data-step="5" rowspan="12">10 min a fuego fuerte + 8 min a fuego suave · apagar, tapar con un paño y reposar 5 min · servir con alioli aparte y un chorrito de AOVE</td>
   </tr>
   <tr><td class="ing"><span class="qty" data-base="200" data-unit="g">200</span> g contramuslo de pollo deshuesado</td></tr>
@@ -160,8 +160,7 @@
 
   <tr>
     <td class="ing"><span class="qty" data-base="150" data-unit="g">150</span> g cebolla, picada fina</td>
-    <td class="step" data-step="3" rowspan="5">picar fino / rallar</td>
-    <td class="step strong" data-step="3" rowspan="5">pochar 12–15 min a fuego medio, hasta que el tomate oscurezca</td>
+    <td class="step" data-step="3" rowspan="5"><span class="prep">picar fino / rallar</span><span class="cook">pochar 12–15 min a fuego medio, hasta que el tomate oscurezca</span></td>
   </tr>
   <tr><td class="ing"><span class="qty" data-base="150" data-unit="g">150</span> g pimiento rojo, picado fino</td></tr>
   <tr><td class="ing"><span class="qty" data-base="2" data-unit="ud" data-decimals="0">2</span> dientes de ajo, picados</td></tr>
@@ -170,21 +169,18 @@
 
   <tr>
     <td class="ing"><span class="qty" data-base="320" data-unit="g">320</span> g arroz bomba + pizca de azafrán</td>
-    <td class="step" data-step="3">tener listo</td>
-    <td class="step strong" data-step="3">añadir al sofrito y nacarar 2 min removiendo</td>
+    <td class="step" data-step="3"><span class="prep">tener listo</span><span class="cook">añadir al sofrito y nacarar 2 min removiendo</span></td>
   </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="800" data-unit="ml">800</span> ml caldo de huesos</td>
-    <td class="step" data-step="4" rowspan="2">mantener hirviendo aparte / desmigar</td>
-    <td class="step strong" data-step="4" rowspan="2">verter el caldo de golpe, incorporar las carnes reservadas y la morcilla · no remover más</td>
+    <td class="step" data-step="4" rowspan="2"><span class="prep">mantener hirviendo aparte / desmigar</span><span class="cook">verter el caldo de golpe, incorporar las carnes reservadas y la morcilla · no remover más</span></td>
   </tr>
   <tr><td class="ing"><span class="qty" data-base="100" data-unit="g">100</span> g morcilla, desmigada</td></tr>
 
   <tr>
     <td class="ing">AOVE y sal, al gusto</td>
-    <td class="step" data-step="4">—</td>
-    <td class="step strong" data-step="4">ajustar de sal durante el sofrito y el caldo</td>
+    <td class="step" data-step="4"><span class="prep">—</span><span class="cook">ajustar de sal durante el sofrito y el caldo</span></td>
   </tr>
 </table>
 
