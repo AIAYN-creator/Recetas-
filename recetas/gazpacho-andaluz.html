@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Gazpacho Andaluz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* --- paleta corporativa: reutilizable en otros proyectos --- */
+    --brand-red: #b3312c;
+    --brand-red-light: #e2c78a; /* usado como borde de acento, ver --gold */
+    --brand-gold: #d1a355;
+    --brand-bg: #1a1210;
+    --brand-bg-soft: #2b1c19;
+    --brand-text: #f5ece4;
+    --brand-text-dim: #c9b8ae;
+
+    --bg: var(--brand-bg);
+    --line: #4a2e28;
+    --line-soft: var(--brand-bg-soft);
+    --text: var(--brand-text);
+    --text-dim: var(--brand-text-dim);
+    --highlight: var(--brand-red);
+    --highlight-border: var(--brand-gold);
+  }
+  * { box-sizing: border-box; }
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Work Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 28px 16px 80px;
+  }
+  h1{
+    font-family: "Bebas Neue", "Work Sans", sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-align: center;
+    font-size: 2.4rem;
+    color: var(--brand-gold);
+    margin: 0 0 4px;
+  }
+  .subtitle{ text-align: center; color: var(--text-dim); font-size: .9rem; margin: 0 0 18px; }
+
+  .servings{
+    max-width: 1100px;
+    margin: 0 auto 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: .95rem;
+  }
+  .servings button{
+    width: 30px; height: 30px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    background: var(--line-soft);
+    color: var(--text);
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  .servings input{
+    width: 42px;
+    text-align: center;
+    background: var(--line-soft);
+    border: 1px solid var(--line);
+    color: var(--text);
+    border-radius: 6px;
+    padding: 4px;
+    font-family: inherit;
+    font-size: .95rem;
+  }
+
+  table{
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: 1px solid var(--line);
+  }
+  td{
+    border: 1px solid var(--line-soft);
+    padding: 14px 16px;
+    font-size: .92rem;
+    line-height: 1.35;
+    vertical-align: middle;
+    transition: background .25s, border-color .25s;
+  }
+  td.full{ text-align: center; font-weight: 700; background: rgba(255,255,255,0.03); }
+  td.ing{ text-align: left; }
+  td.step{ text-align: center; color: var(--text-dim); }
+  td.step.strong{ color: var(--text); font-weight: 600; }
+  td.final{ text-align: center; font-weight: 600; }
+
+  .qty{ color: var(--brand-gold); font-weight: 700; }
+
+  td.active{
+    background: var(--highlight);
+    color: #fff;
+    border: 2px solid var(--highlight-border);
+  }
+  td.active .qty{ color: #fff; text-decoration: underline; }
+
+  .nav{
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    padding: 14px;
+    background: rgba(26,18,16,0.95);
+    border-top: 1px solid var(--line);
+  }
+  .nav button{
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--brand-red);
+    background: var(--brand-red);
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .nav button:disabled{ opacity: .35; cursor: default; background: var(--line-soft); border-color: var(--line); }
+  .nav .label{
+    align-self: center;
+    color: var(--text-dim);
+    font-size: .85rem;
+    min-width: 160px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<h1>Gazpacho Andaluz</h1>
+<p class="subtitle">~20 min activos + mínimo 2h de nevera</p>
+
+<div class="servings">
+  <span>Comensales:</span>
+  <button id="minusBtn">−</button>
+  <input type="number" id="servingsInput" value="4" min="1" max="20">
+  <button id="plusBtn">+</button>
+</div>
+
+<table>
+  <tr><td class="full" data-step="1" colspan="4">Remojar el pan en un chorrito de agua o vinagre 10 min</td></tr>
+
+  <tr>
+    <td class="ing"><span class="qty" data-base="1000" data-unit="g">1000</span> g tomates maduros, a poder ser de pera</td>
+    <td class="step" data-step="2" rowspan="6">trocear en trozos grandes / pelar y escurrir</td>
+    <td class="step strong" data-step="2" rowspan="6">triturar todo junto a máxima potencia hasta conseguir una crema fina</td>
+    <td class="final" data-step="5" rowspan="10">Colar si se desea una textura más fina, rectificar de sal y enfriar en la nevera mínimo 2h · servir muy frío, con un chorrito de AOVE por encima</td>
+  </tr>
+  <tr><td class="ing"><span class="qty" data-base="100" data-unit="g">100</span> g pimiento verde italiano</td></tr>
+  <tr><td class="ing"><span class="qty" data-base="150" data-unit="g">150</span> g pepino, pelado</td></tr>
+  <tr><td class="ing"><span class="qty" data-base="50" data-unit="g">50</span> g cebolla</td></tr>
+  <tr><td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> diente de ajo</td></tr>
+  <tr><td class="ing"><span class="qty" data-base="50" data-unit="g">50</span> g pan duro (de payés)</td></tr>
+
+  <tr>
+    <td class="ing"><span class="qty" data-base="100" data-unit="ml">100</span> ml AOVE</td>
+    <td class="step" data-step="3" rowspan="3">tener listo</td>
+    <td class="step strong" data-step="3" rowspan="3">añadir en hilo mientras se sigue triturando, hasta emulsionar</td>
+  </tr>
+  <tr><td class="ing"><span class="qty" data-base="30" data-unit="ml">30</span> ml vinagre de vino, a poder ser de Jerez</td></tr>
+  <tr><td class="ing">Sal, al gusto</td></tr>
+
+  <tr>
+    <td class="ing"><span class="qty" data-base="250" data-unit="ml">250</span> ml agua fría</td>
+    <td class="step" data-step="4">tener fría</td>
+    <td class="step strong" data-step="4">añadir poco a poco hasta conseguir la consistencia deseada</td>
+  </tr>
+</table>
+
+<div class="nav">
+  <button id="prevBtn">◀ Paso anterior</button>
+  <span class="label" id="stepLabel">Paso 1 de 5</span>
+  <button id="nextBtn">Paso siguiente ▶</button>
+</div>
+
+<script>
+  // --- navegación de pasos ---
+  const totalSteps = 5;
+  let current = 1;
+  const cells = document.querySelectorAll('[data-step]');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const label = document.getElementById('stepLabel');
+
+  function renderStep(){
+    cells.forEach(c => c.classList.toggle('active', Number(c.dataset.step) === current));
+    label.textContent = `Paso ${current} de ${totalSteps}`;
+    prevBtn.disabled = current === 1;
+    nextBtn.disabled = current === totalSteps;
+  }
+  prevBtn.addEventListener('click', () => { if (current > 1) current--; renderStep(); });
+  nextBtn.addEventListener('click', () => { if (current < totalSteps) current++; renderStep(); });
+  renderStep();
+
+  // --- escalado de comensales ---
+  const BASE_SERVINGS = 4;
+  const servingsInput = document.getElementById('servingsInput');
+  const minusBtn = document.getElementById('minusBtn');
+  const plusBtn = document.getElementById('plusBtn');
+  const qtyEls = document.querySelectorAll('.qty');
+
+  function renderServings(){
+    const servings = Math.max(1, Number(servingsInput.value) || BASE_SERVINGS);
+    const factor = servings / BASE_SERVINGS;
+    qtyEls.forEach(el => {
+      const base = Number(el.dataset.base);
+      const decimals = el.dataset.decimals !== undefined ? Number(el.dataset.decimals) : 1;
+      const scaled = base * factor;
+      el.textContent = decimals === 0 ? Math.round(scaled) : scaled.toFixed(decimals);
+    });
+  }
+  minusBtn.addEventListener('click', () => { servingsInput.value = Math.max(1, Number(servingsInput.value) - 1); renderServings(); });
+  plusBtn.addEventListener('click', () => { servingsInput.value = Number(servingsInput.value) + 1; renderServings(); });
+  servingsInput.addEventListener('input', renderServings);
+  renderServings();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Paella de Verduras</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* --- paleta corporativa: reutilizable en otros proyectos --- */
+    --brand-red: #b3312c;
+    --brand-red-light: #e2c78a; /* usado como borde de acento, ver --gold */
+    --brand-gold: #d1a355;
+    --brand-bg: #1a1210;
+    --brand-bg-soft: #2b1c19;
+    --brand-text: #f5ece4;
+    --brand-text-dim: #c9b8ae;
+
+    --bg: var(--brand-bg);
+    --line: #4a2e28;
+    --line-soft: var(--brand-bg-soft);
+    --text: var(--brand-text);
+    --text-dim: var(--brand-text-dim);
+    --highlight: var(--brand-red);
+    --highlight-border: var(--brand-gold);
+  }
+  * { box-sizing: border-box; }
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Work Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 28px 16px 80px;
+  }
+  h1{
+    font-family: "Bebas Neue", "Work Sans", sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-align: center;
+    font-size: 2.4rem;
+    color: var(--brand-gold);
+    margin: 0 0 4px;
+  }
+  .subtitle{ text-align: center; color: var(--text-dim); font-size: .9rem; margin: 0 0 18px; }
+
+  .servings{
+    max-width: 1100px;
+    margin: 0 auto 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: .95rem;
+  }
+  .servings button{
+    width: 30px; height: 30px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    background: var(--line-soft);
+    color: var(--text);
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  .servings input{
+    width: 42px;
+    text-align: center;
+    background: var(--line-soft);
+    border: 1px solid var(--line);
+    color: var(--text);
+    border-radius: 6px;
+    padding: 4px;
+    font-family: inherit;
+    font-size: .95rem;
+  }
+
+  table{
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: 1px solid var(--line);
+  }
+  td{
+    border: 1px solid var(--line-soft);
+    padding: 14px 16px;
+    font-size: .92rem;
+    line-height: 1.35;
+    vertical-align: middle;
+    transition: background .25s, border-color .25s;
+  }
+  td.full{ text-align: center; font-weight: 700; background: rgba(255,255,255,0.03); }
+  td.ing{ text-align: left; }
+  td.step{ text-align: center; color: var(--text-dim); }
+  td.step.strong{ color: var(--text); font-weight: 600; }
+  td.final{ text-align: center; font-weight: 600; }
+
+  .qty{ color: var(--brand-gold); font-weight: 700; }
+
+  td.active{
+    background: var(--highlight);
+    color: #fff;
+    border: 2px solid var(--highlight-border);
+  }
+  td.active .qty{ color: #fff; text-decoration: underline; }
+
+  .nav{
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    padding: 14px;
+    background: rgba(26,18,16,0.95);
+    border-top: 1px solid var(--line);
+  }
+  .nav button{
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--brand-red);
+    background: var(--brand-red);
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .nav button:disabled{ opacity: .35; cursor: default; background: var(--line-soft); border-color: var(--line); }
+  .nav .label{
+    align-self: center;
+    color: var(--text-dim);
+    font-size: .85rem;
+    min-width: 160px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<h1>Paella de Verduras</h1>
+<p class="subtitle">~65 min, la versión vegetal de la paella valenciana</p>
+
+<div class="servings">
+  <span>Comensales:</span>
+  <button id="minusBtn">−</button>
+  <input type="number" id="servingsInput" value="4" min="1" max="20">
+  <button id="plusBtn">+</button>
+</div>
+
+<table>
+  <tr><td class="full" data-step="1" colspan="4">Tener el agua caliente aparte</td></tr>
+  <tr><td class="full" data-step="1" colspan="4">Limpiar y trocear todas las verduras</td></tr>
+
+  <tr>
+    <td class="ing"><span class="qty" data-base="100" data-unit="ml">100</span> ml aceite de oliva virgen extra</td>
+    <td class="step" data-step="2" rowspan="4">tener listo en la paellera</td>
+    <td class="step strong" data-step="2" rowspan="4">calentar el aceite a fuego medio-fuerte y sofreír las verduras 8–10 min, hasta que doren ligeramente</td>
+    <td class="final" data-step="7" rowspan="12">Cocer 10 min a fuego fuerte sin remover + 8–10 min a fuego medio-suave, hasta que el arroz esté en su punto y el caldo se haya consumido · apagar, tapar con un paño y dejar reposar 5 min · servir con gajos de limón aparte</td>
+  </tr>
+  <tr><td class="ing"><span class="qty" data-base="200" data-unit="g">200</span> g alcachofas, limpias y en cuartos</td></tr>
+  <tr><td class="ing"><span class="qty" data-base="200" data-unit="g">200</span> g judía verde plana (bajoqueta)</td></tr>
+  <tr><td class="ing"><span class="qty" data-base="150" data-unit="g">150</span> g garrofón</td></tr>
+
+  <tr>
+    <td class="ing"><span class="qty" data-base="150" data-unit="g">150</span> g pimiento rojo, en tiras</td>
+    <td class="step" data-step="3">cortar en tiras</td>
+    <td class="step strong" data-step="3">añadir a la paellera y sofreír 3 min más</td>
+  </tr>
+
+  <tr>
+    <td class="ing"><span class="qty" data-base="150" data-unit="g">150</span> g tomate maduro, rallado</td>
+    <td class="step" data-step="4" rowspan="2">rallar / tener listo</td>
+    <td class="step strong" data-step="4" rowspan="2">incorporar el tomate y el pimentón, sofreír 2 min sin que se queme</td>
+  </tr>
+  <tr><td class="ing"><span class="qty" data-base="1" data-unit="cda" data-decimals="1">1</span> cda pimentón dulce</td></tr>
+
+  <tr>
+    <td class="ing"><span class="qty" data-base="1400" data-unit="ml">1400</span> ml agua</td>
+    <td class="step" data-step="5" rowspan="3">calentar aparte</td>
+    <td class="step strong" data-step="5" rowspan="3">verter el agua, añadir el azafrán y el romero, llevar a hervor y cocer 10 min</td>
+  </tr>
+  <tr><td class="ing"><span class="qty" data-base="1" data-unit="pizca" data-decimals="0">1</span> pizca de azafrán en hebras</td></tr>
+  <tr><td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> ramita de romero</td></tr>
+
+  <tr>
+    <td class="ing"><span class="qty" data-base="400" data-unit="g">400</span> g arroz bomba</td>
+    <td class="step" data-step="6">tener listo</td>
+    <td class="step strong" data-step="6">repartir de forma uniforme por toda la paellera, sin remover más</td>
+  </tr>
+
+  <tr>
+    <td class="ing">Sal, al gusto</td>
+    <td class="step" data-step="6">—</td>
+    <td class="step strong" data-step="6">ajustar el punto de sal durante el sofrito y el hervor</td>
+  </tr>
+</table>
+
+<div class="nav">
+  <button id="prevBtn">◀ Paso anterior</button>
+  <span class="label" id="stepLabel">Paso 1 de 7</span>
+  <button id="nextBtn">Paso siguiente ▶</button>
+</div>
+
+<script>
+  // --- navegación de pasos ---
+  const totalSteps = 7;
+  let current = 1;
+  const cells = document.querySelectorAll('[data-step]');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const label = document.getElementById('stepLabel');
+
+  function renderStep(){
+    cells.forEach(c => c.classList.toggle('active', Number(c.dataset.step) === current));
+    label.textContent = `Paso ${current} de ${totalSteps}`;
+    prevBtn.disabled = current === 1;
+    nextBtn.disabled = current === totalSteps;
+  }
+  prevBtn.addEventListener('click', () => { if (current > 1) current--; renderStep(); });
+  nextBtn.addEventListener('click', () => { if (current < totalSteps) current++; renderStep(); });
+  renderStep();
+
+  // --- escalado de comensales ---
+  const BASE_SERVINGS = 4;
+  const servingsInput = document.getElementById('servingsInput');
+  const minusBtn = document.getElementById('minusBtn');
+  const plusBtn = document.getElementById('plusBtn');
+  const qtyEls = document.querySelectorAll('.qty');
+
+  function renderServings(){
+    const servings = Math.max(1, Number(servingsInput.value) || BASE_SERVINGS);
+    const factor = servings / BASE_SERVINGS;
+    qtyEls.forEach(el => {
+      const base = Number(el.dataset.base);
+      const decimals = el.dataset.decimals !== undefined ? Number(el.dataset.decimals) : 1;
+      const scaled = base * factor;
+      el.textContent = decimals === 0 ? Math.round(scaled) : scaled.toFixed(decimals);
+    });
+  }
+  minusBtn.addEventListener('click', () => { servingsInput.value = Math.max(1, Number(servingsInput.value) - 1); renderServings(); });
+  plusBtn.addEventListener('click', () => { servingsInput.value = Number(servingsInput.value) + 1; renderServings(); });
+  servingsInput.addEventListener('input', renderServings);
+  renderServings();
+</script>
+
+</body>
+</html>
