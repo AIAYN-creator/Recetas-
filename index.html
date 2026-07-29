@@ -3,26 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <title>Arroz de carne "del señorito" con caldo de huesos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #101d15;
-    --line: #3a5a44;
-    --line-soft: #24382b;
-    --text: #eef3ec;
-    --text-dim: #b9c7bd;
-    --highlight: #3d6b4a;
-    --highlight-border: #7fd99a;
+    /* --- paleta corporativa: reutilizable en otros proyectos --- */
+    --brand-red: #b3312c;
+    --brand-red-light: #e2c78a; /* usado como borde de acento, ver --gold */
+    --brand-gold: #d1a355;
+    --brand-bg: #1a1210;
+    --brand-bg-soft: #2b1c19;
+    --brand-text: #f5ece4;
+    --brand-text-dim: #c9b8ae;
+
+    --bg: var(--brand-bg);
+    --line: #4a2e28;
+    --line-soft: var(--brand-bg-soft);
+    --text: var(--brand-text);
+    --text-dim: var(--brand-text-dim);
+    --highlight: var(--brand-red);
+    --highlight-border: var(--brand-gold);
   }
   * { box-sizing: border-box; }
   body{
     background: var(--bg);
     color: var(--text);
-    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-family: "Work Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 28px 16px 80px;
   }
-  h1{ text-align: center; font-size: 1.35rem; margin: 0 0 4px; }
-  .subtitle{ text-align: center; color: var(--text-dim); font-size: .9rem; margin: 0 0 22px; }
+  h1{
+    font-family: "Bebas Neue", "Work Sans", sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-align: center;
+    font-size: 2.4rem;
+    color: var(--brand-gold);
+    margin: 0 0 4px;
+  }
+  .subtitle{ text-align: center; color: var(--text-dim); font-size: .9rem; margin: 0 0 18px; }
+
+  .servings{
+    max-width: 1100px;
+    margin: 0 auto 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: .95rem;
+  }
+  .servings button{
+    width: 30px; height: 30px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    background: var(--line-soft);
+    color: var(--text);
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  .servings input{
+    width: 42px;
+    text-align: center;
+    background: var(--line-soft);
+    border: 1px solid var(--line);
+    color: var(--text);
+    border-radius: 6px;
+    padding: 4px;
+    font-family: inherit;
+    font-size: .95rem;
+  }
+
   table{
     width: 100%;
     max-width: 1100px;
@@ -38,17 +88,20 @@
     vertical-align: middle;
     transition: background .25s, border-color .25s;
   }
-  td.full{ text-align: center; font-weight: 700; background: rgba(255,255,255,0.02); }
+  td.full{ text-align: center; font-weight: 700; background: rgba(255,255,255,0.03); }
   td.ing{ text-align: left; }
   td.step{ text-align: center; color: var(--text-dim); }
   td.step.strong{ color: var(--text); font-weight: 600; }
   td.final{ text-align: center; font-weight: 600; }
+
+  .qty{ color: var(--brand-gold); font-weight: 700; }
 
   td.active{
     background: var(--highlight);
     color: #fff;
     border: 2px solid var(--highlight-border);
   }
+  td.active .qty{ color: #fff; text-decoration: underline; }
 
   .nav{
     position: fixed;
@@ -57,19 +110,20 @@
     justify-content: center;
     gap: 14px;
     padding: 14px;
-    background: rgba(16,29,21,0.95);
+    background: rgba(26,18,16,0.95);
     border-top: 1px solid var(--line);
   }
   .nav button{
     font-size: 1rem;
     padding: 10px 20px;
     border-radius: 8px;
-    border: 1px solid var(--line);
-    background: var(--line-soft);
-    color: var(--text);
+    border: 1px solid var(--brand-red);
+    background: var(--brand-red);
+    color: #fff;
     cursor: pointer;
+    font-weight: 600;
   }
-  .nav button:disabled{ opacity: .4; cursor: default; }
+  .nav button:disabled{ opacity: .35; cursor: default; background: var(--line-soft); border-color: var(--line); }
   .nav .label{
     align-self: center;
     color: var(--text-dim);
@@ -82,43 +136,50 @@
 <body>
 
 <h1>Arroz de carne "del señorito" con caldo de huesos</h1>
-<p class="subtitle">4 personas · ~45 min activos + caldo de huesos hecho de antemano</p>
+<p class="subtitle">~45 min activos + caldo de huesos hecho de antemano</p>
+
+<div class="servings">
+  <span>Comensales:</span>
+  <button id="minusBtn">−</button>
+  <input type="number" id="servingsInput" value="4" min="1" max="20">
+  <button id="plusBtn">+</button>
+</div>
 
 <table>
   <tr><td class="full" data-step="1" colspan="4">Tener el caldo de huesos hirviendo aparte, bien concentrado y colado</td></tr>
   <tr><td class="full" data-step="1" colspan="4">Salpimentar y secar bien las carnes</td></tr>
 
   <tr>
-    <td class="ing">300 g costilla de cerdo deshuesada</td>
+    <td class="ing"><span class="qty" data-base="300" data-unit="g">300</span> g costilla de cerdo deshuesada</td>
     <td class="step" data-step="2" rowspan="3">trocear en dados de 3 cm</td>
     <td class="step strong" data-step="2" rowspan="3">dorar por tandas a fuego fuerte, 4–5 min · reservar</td>
     <td class="final" data-step="5" rowspan="12">10 min a fuego fuerte + 8 min a fuego suave · apagar, tapar con un paño y reposar 5 min · servir con alioli aparte y un chorrito de AOVE</td>
   </tr>
-  <tr><td class="ing">200 g contramuslo de pollo deshuesado</td></tr>
-  <tr><td class="ing">100 g panceta fresca, en dados pequeños</td></tr>
+  <tr><td class="ing"><span class="qty" data-base="200" data-unit="g">200</span> g contramuslo de pollo deshuesado</td></tr>
+  <tr><td class="ing"><span class="qty" data-base="100" data-unit="g">100</span> g panceta fresca, en dados pequeños</td></tr>
 
   <tr>
-    <td class="ing">1 cebolla (150 g)</td>
+    <td class="ing"><span class="qty" data-base="150" data-unit="g">150</span> g cebolla, picada fina</td>
     <td class="step" data-step="3" rowspan="5">picar fino / rallar</td>
     <td class="step strong" data-step="3" rowspan="5">pochar 12–15 min a fuego medio, hasta que el tomate oscurezca</td>
   </tr>
-  <tr><td class="ing">1 pimiento rojo (150 g)</td></tr>
-  <tr><td class="ing">2 dientes de ajo</td></tr>
-  <tr><td class="ing">2 tomates maduros (200 g)</td></tr>
-  <tr><td class="ing">1 ñora hidratada (o 1 cdta pimentón dulce)</td></tr>
+  <tr><td class="ing"><span class="qty" data-base="150" data-unit="g">150</span> g pimiento rojo, picado fino</td></tr>
+  <tr><td class="ing"><span class="qty" data-base="2" data-unit="ud" data-decimals="0">2</span> dientes de ajo, picados</td></tr>
+  <tr><td class="ing"><span class="qty" data-base="200" data-unit="g">200</span> g tomates maduros, rallados</td></tr>
+  <tr><td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> ñora hidratada (o 1 cdta pimentón dulce)</td></tr>
 
   <tr>
-    <td class="ing">320 g arroz bomba + pizca de azafrán</td>
+    <td class="ing"><span class="qty" data-base="320" data-unit="g">320</span> g arroz bomba + pizca de azafrán</td>
     <td class="step" data-step="3">tener listo</td>
     <td class="step strong" data-step="3">añadir al sofrito y nacarar 2 min removiendo</td>
   </tr>
 
   <tr>
-    <td class="ing">800 ml caldo de huesos</td>
+    <td class="ing"><span class="qty" data-base="800" data-unit="ml">800</span> ml caldo de huesos</td>
     <td class="step" data-step="4" rowspan="2">mantener hirviendo aparte / desmigar</td>
     <td class="step strong" data-step="4" rowspan="2">verter el caldo de golpe, incorporar las carnes reservadas y la morcilla · no remover más</td>
   </tr>
-  <tr><td class="ing">100 g morcilla, desmigada</td></tr>
+  <tr><td class="ing"><span class="qty" data-base="100" data-unit="g">100</span> g morcilla, desmigada</td></tr>
 
   <tr>
     <td class="ing">AOVE y sal, al gusto</td>
@@ -134,6 +195,7 @@
 </div>
 
 <script>
+  // --- navegación de pasos ---
   const totalSteps = 5;
   let current = 1;
   const cells = document.querySelectorAll('[data-step]');
@@ -141,15 +203,37 @@
   const nextBtn = document.getElementById('nextBtn');
   const label = document.getElementById('stepLabel');
 
-  function render(){
+  function renderStep(){
     cells.forEach(c => c.classList.toggle('active', Number(c.dataset.step) === current));
     label.textContent = `Paso ${current} de ${totalSteps}`;
     prevBtn.disabled = current === 1;
     nextBtn.disabled = current === totalSteps;
   }
-  prevBtn.addEventListener('click', () => { if (current > 1) current--; render(); });
-  nextBtn.addEventListener('click', () => { if (current < totalSteps) current++; render(); });
-  render();
+  prevBtn.addEventListener('click', () => { if (current > 1) current--; renderStep(); });
+  nextBtn.addEventListener('click', () => { if (current < totalSteps) current++; renderStep(); });
+  renderStep();
+
+  // --- escalado de comensales ---
+  const BASE_SERVINGS = 4;
+  const servingsInput = document.getElementById('servingsInput');
+  const minusBtn = document.getElementById('minusBtn');
+  const plusBtn = document.getElementById('plusBtn');
+  const qtyEls = document.querySelectorAll('.qty');
+
+  function renderServings(){
+    const servings = Math.max(1, Number(servingsInput.value) || BASE_SERVINGS);
+    const factor = servings / BASE_SERVINGS;
+    qtyEls.forEach(el => {
+      const base = Number(el.dataset.base);
+      const decimals = el.dataset.decimals !== undefined ? Number(el.dataset.decimals) : 1;
+      const scaled = base * factor;
+      el.textContent = decimals === 0 ? Math.round(scaled) : scaled.toFixed(decimals);
+    });
+  }
+  minusBtn.addEventListener('click', () => { servingsInput.value = Math.max(1, Number(servingsInput.value) - 1); renderServings(); });
+  plusBtn.addEventListener('click', () => { servingsInput.value = Number(servingsInput.value) + 1; renderServings(); });
+  servingsInput.addEventListener('input', renderServings);
+  renderServings();
 </script>
 
 </body>
