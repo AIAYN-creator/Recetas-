@@ -2,239 +2,280 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Arroz de carne "del señorito" con caldo de huesos</title>
+<title>Recetario</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* --- paleta corporativa: reutilizable en otros proyectos --- */
     --brand-red: #b3312c;
-    --brand-red-light: #e2c78a; /* usado como borde de acento, ver --gold */
     --brand-gold: #d1a355;
     --brand-bg: #1a1210;
     --brand-bg-soft: #2b1c19;
     --brand-text: #f5ece4;
     --brand-text-dim: #c9b8ae;
-
-    --bg: var(--brand-bg);
     --line: #4a2e28;
-    --line-soft: var(--brand-bg-soft);
-    --text: var(--brand-text);
-    --text-dim: var(--brand-text-dim);
-    --highlight: var(--brand-red);
-    --highlight-border: var(--brand-gold);
   }
   * { box-sizing: border-box; }
   body{
-    background: var(--bg);
-    color: var(--text);
+    background: var(--brand-bg);
+    color: var(--brand-text);
     font-family: "Work Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
     margin: 0;
-    padding: 28px 16px 80px;
+    padding: 28px 16px 60px;
   }
   h1{
-    font-family: "Bebas Neue", "Work Sans", sans-serif;
+    font-family: "Bebas Neue", sans-serif;
     font-weight: 400;
     letter-spacing: 1px;
     text-align: center;
-    font-size: 2.4rem;
+    font-size: 2.6rem;
     color: var(--brand-gold);
-    margin: 0 0 4px;
+    margin: 0 0 22px;
   }
-  .subtitle{ text-align: center; color: var(--text-dim); font-size: .9rem; margin: 0 0 18px; }
-
-  .servings{
-    max-width: 1100px;
-    margin: 0 auto 22px;
+ 
+  .controls{
+    max-width: 900px;
+    margin: 0 auto 26px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    font-size: .95rem;
-  }
-  .servings button{
-    width: 30px; height: 30px;
-    border-radius: 6px;
-    border: 1px solid var(--line);
-    background: var(--line-soft);
-    color: var(--text);
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  .servings input{
-    width: 42px;
-    text-align: center;
-    background: var(--line-soft);
-    border: 1px solid var(--line);
-    color: var(--text);
-    border-radius: 6px;
-    padding: 4px;
-    font-family: inherit;
-    font-size: .95rem;
-  }
-
-  table{
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    border-collapse: collapse;
-    border: 1px solid var(--line);
-  }
-  td{
-    border: 1px solid var(--line-soft);
-    padding: 14px 16px;
-    font-size: .92rem;
-    line-height: 1.35;
-    vertical-align: middle;
-    transition: background .25s, border-color .25s;
-  }
-  td.full{ text-align: center; font-weight: 700; background: rgba(255,255,255,0.03); }
-  td.ing{ text-align: left; }
-  td.step{ text-align: center; color: var(--text-dim); }
-  td.step.strong{ color: var(--text); font-weight: 600; }
-  td.final{ text-align: center; font-weight: 600; }
-
-  .qty{ color: var(--brand-gold); font-weight: 700; }
-
-  td.active{
-    background: var(--highlight);
-    color: #fff;
-    border: 2px solid var(--highlight-border);
-  }
-  td.active .qty{ color: #fff; text-decoration: underline; }
-
-  .nav{
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    display: flex;
-    justify-content: center;
+    flex-direction: column;
     gap: 14px;
-    padding: 14px;
-    background: rgba(26,18,16,0.95);
-    border-top: 1px solid var(--line);
   }
-  .nav button{
+  #searchInput{
+    width: 100%;
+    padding: 12px 14px;
     font-size: 1rem;
-    padding: 10px 20px;
     border-radius: 8px;
-    border: 1px solid var(--brand-red);
-    background: var(--brand-red);
-    color: #fff;
+    border: 1px solid var(--line);
+    background: var(--brand-bg-soft);
+    color: var(--brand-text);
+    font-family: inherit;
+  }
+  .filter-group{ display: flex; flex-direction: column; gap: 6px; }
+  .filter-group .label{ font-size: .78rem; color: var(--brand-text-dim); text-transform: uppercase; letter-spacing: .5px; }
+  .chip-row{ display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip{
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--brand-bg-soft);
+    color: var(--brand-text-dim);
+    font-size: .82rem;
     cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .chip.active{
+    background: var(--brand-red);
+    border-color: var(--brand-red);
+    color: #fff;
     font-weight: 600;
   }
-  .nav button:disabled{ opacity: .35; cursor: default; background: var(--line-soft); border-color: var(--line); }
-  .nav .label{
-    align-self: center;
-    color: var(--text-dim);
-    font-size: .85rem;
-    min-width: 160px;
+ 
+  .grid{
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .card{
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px;
+    background: var(--brand-bg-soft);
+    transition: border-color .2s, transform .2s;
+  }
+  .card:hover{ border-color: var(--brand-gold); transform: translateY(-2px); }
+  .card h2{
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    letter-spacing: .5px;
+    font-size: 1.3rem;
+    color: var(--brand-text);
+    margin: 0 0 10px;
+  }
+  .badges{ display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .badge{
+    font-size: .75rem;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.05);
+    color: var(--brand-text-dim);
+  }
+  .badge.time{ color: var(--brand-gold); }
+  .badge.prep{ color: var(--brand-red); border: 1px solid var(--brand-red); }
+  .empty{
     text-align: center;
+    color: var(--brand-text-dim);
+    padding: 40px 0;
+    grid-column: 1 / -1;
   }
 </style>
 </head>
 <body>
-
-<h1>Arroz de carne "del señorito" con caldo de huesos</h1>
-<p class="subtitle">~45 min activos + caldo de huesos hecho de antemano</p>
-
-<div class="servings">
-  <span>Comensales:</span>
-  <button id="minusBtn">−</button>
-  <input type="number" id="servingsInput" value="4" min="1" max="20">
-  <button id="plusBtn">+</button>
+ 
+<h1>Mi Recetario</h1>
+ 
+<div class="controls">
+  <input type="text" id="searchInput" placeholder="Buscar receta por nombre...">
+ 
+  <div class="filter-group">
+    <span class="label">Excluir alérgenos</span>
+    <div class="chip-row" id="allergenFilters"></div>
+  </div>
+ 
+  <div class="filter-group">
+    <span class="label">Tiempo de preparación</span>
+    <div class="chip-row" id="timeFilters">
+      <span class="chip active" data-time="all">Todas</span>
+      <span class="chip" data-time="short">&lt; 30 min</span>
+      <span class="chip" data-time="medium">30–60 min</span>
+      <span class="chip" data-time="long">+ 60 min</span>
+    </div>
+  </div>
+ 
+  <div class="filter-group">
+    <span class="label">Preparación previa</span>
+    <div class="chip-row" id="prepFilters">
+      <span class="chip active" data-prep="all">Todas</span>
+      <span class="chip" data-prep="yes">Requiere prep. previa</span>
+      <span class="chip" data-prep="no">Sin prep. previa</span>
+    </div>
+  </div>
 </div>
-
-<table>
-  <tr><td class="full" data-step="1" colspan="4">Tener el caldo de huesos hirviendo aparte, bien concentrado y colado</td></tr>
-  <tr><td class="full" data-step="1" colspan="4">Salpimentar y secar bien las carnes</td></tr>
-
-  <tr>
-    <td class="ing"><span class="qty" data-base="300" data-unit="g">300</span> g costilla de cerdo deshuesada</td>
-    <td class="step" data-step="2" rowspan="3">trocear en dados de 3 cm</td>
-    <td class="step strong" data-step="2" rowspan="3">dorar por tandas a fuego fuerte, 4–5 min · reservar</td>
-    <td class="final" data-step="5" rowspan="12">10 min a fuego fuerte + 8 min a fuego suave · apagar, tapar con un paño y reposar 5 min · servir con alioli aparte y un chorrito de AOVE</td>
-  </tr>
-  <tr><td class="ing"><span class="qty" data-base="200" data-unit="g">200</span> g contramuslo de pollo deshuesado</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="100" data-unit="g">100</span> g panceta fresca, en dados pequeños</td></tr>
-
-  <tr>
-    <td class="ing"><span class="qty" data-base="150" data-unit="g">150</span> g cebolla, picada fina</td>
-    <td class="step" data-step="3" rowspan="5">picar fino / rallar</td>
-    <td class="step strong" data-step="3" rowspan="5">pochar 12–15 min a fuego medio, hasta que el tomate oscurezca</td>
-  </tr>
-  <tr><td class="ing"><span class="qty" data-base="150" data-unit="g">150</span> g pimiento rojo, picado fino</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="2" data-unit="ud" data-decimals="0">2</span> dientes de ajo, picados</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="200" data-unit="g">200</span> g tomates maduros, rallados</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> ñora hidratada (o 1 cdta pimentón dulce)</td></tr>
-
-  <tr>
-    <td class="ing"><span class="qty" data-base="320" data-unit="g">320</span> g arroz bomba + pizca de azafrán</td>
-    <td class="step" data-step="3">tener listo</td>
-    <td class="step strong" data-step="3">añadir al sofrito y nacarar 2 min removiendo</td>
-  </tr>
-
-  <tr>
-    <td class="ing"><span class="qty" data-base="800" data-unit="ml">800</span> ml caldo de huesos</td>
-    <td class="step" data-step="4" rowspan="2">mantener hirviendo aparte / desmigar</td>
-    <td class="step strong" data-step="4" rowspan="2">verter el caldo de golpe, incorporar las carnes reservadas y la morcilla · no remover más</td>
-  </tr>
-  <tr><td class="ing"><span class="qty" data-base="100" data-unit="g">100</span> g morcilla, desmigada</td></tr>
-
-  <tr>
-    <td class="ing">AOVE y sal, al gusto</td>
-    <td class="step" data-step="4">—</td>
-    <td class="step strong" data-step="4">ajustar de sal durante el sofrito y el caldo</td>
-  </tr>
-</table>
-
-<div class="nav">
-  <button id="prevBtn">◀ Paso anterior</button>
-  <span class="label" id="stepLabel">Paso 1 de 5</span>
-  <button id="nextBtn">Paso siguiente ▶</button>
-</div>
-
+ 
+<div class="grid" id="grid"></div>
+ 
 <script>
-  // --- navegación de pasos ---
-  const totalSteps = 5;
-  let current = 1;
-  const cells = document.querySelectorAll('[data-step]');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const label = document.getElementById('stepLabel');
-
-  function renderStep(){
-    cells.forEach(c => c.classList.toggle('active', Number(c.dataset.step) === current));
-    label.textContent = `Paso ${current} de ${totalSteps}`;
-    prevBtn.disabled = current === 1;
-    nextBtn.disabled = current === totalSteps;
+  // --- alérgenos estándar UE, con emoji a modo de pictograma ---
+  const ALLERGENS = [
+    { id: "gluten",    label: "Gluten",         emoji: "🌾" },
+    { id: "crustaceos",label: "Crustáceos",     emoji: "🦐" },
+    { id: "huevo",     label: "Huevo",          emoji: "🥚" },
+    { id: "pescado",   label: "Pescado",        emoji: "🐟" },
+    { id: "cacahuete", label: "Cacahuete",      emoji: "🥜" },
+    { id: "soja",      label: "Soja",           emoji: "🫘" },
+    { id: "lacteos",   label: "Lácteos",        emoji: "🥛" },
+    { id: "frutos_cascara", label: "Frutos de cáscara", emoji: "🌰" },
+    { id: "apio",      label: "Apio",           emoji: "🥬" },
+    { id: "mostaza",   label: "Mostaza",        emoji: "🟡" },
+    { id: "sesamo",    label: "Sésamo",         emoji: "◦" },
+    { id: "sulfitos",  label: "Sulfitos",       emoji: "🍷" },
+    { id: "altramuces",label: "Altramuces",     emoji: "🫛" },
+    { id: "moluscos",  label: "Moluscos",       emoji: "🦪" },
+  ];
+ 
+  // --- base de datos de recetas: añade una entrada nueva cada vez que crees una receta ---
+  const RECIPES = [
+    {
+      title: "Arroz de carne \"del señorito\" con caldo de huesos",
+      file: "recetas/arroz-senyoret.html",
+      allergens: ["gluten"], // trazas por la morcilla (pan rallado como relleno habitual)
+      timeMinutes: 45,
+      requiresPrep: true,
+      prepText: "Caldo de huesos hecho con antelación (mín. 4h)"
+    }
+  ];
+ 
+  function timeCategory(min){
+    if (min < 30) return "short";
+    if (min <= 60) return "medium";
+    return "long";
   }
-  prevBtn.addEventListener('click', () => { if (current > 1) current--; renderStep(); });
-  nextBtn.addEventListener('click', () => { if (current < totalSteps) current++; renderStep(); });
-  renderStep();
-
-  // --- escalado de comensales ---
-  const BASE_SERVINGS = 4;
-  const servingsInput = document.getElementById('servingsInput');
-  const minusBtn = document.getElementById('minusBtn');
-  const plusBtn = document.getElementById('plusBtn');
-  const qtyEls = document.querySelectorAll('.qty');
-
-  function renderServings(){
-    const servings = Math.max(1, Number(servingsInput.value) || BASE_SERVINGS);
-    const factor = servings / BASE_SERVINGS;
-    qtyEls.forEach(el => {
-      const base = Number(el.dataset.base);
-      const decimals = el.dataset.decimals !== undefined ? Number(el.dataset.decimals) : 1;
-      const scaled = base * factor;
-      el.textContent = decimals === 0 ? Math.round(scaled) : scaled.toFixed(decimals);
+ 
+  // estado de filtros
+  let searchTerm = "";
+  let excludedAllergens = new Set();
+  let timeFilter = "all";
+  let prepFilter = "all";
+ 
+  // render chips de alérgenos
+  const allergenFiltersEl = document.getElementById("allergenFilters");
+  ALLERGENS.forEach(a => {
+    const chip = document.createElement("span");
+    chip.className = "chip";
+    chip.textContent = `${a.emoji} ${a.label}`;
+    chip.dataset.allergen = a.id;
+    chip.addEventListener("click", () => {
+      chip.classList.toggle("active");
+      if (excludedAllergens.has(a.id)) excludedAllergens.delete(a.id);
+      else excludedAllergens.add(a.id);
+      render();
+    });
+    allergenFiltersEl.appendChild(chip);
+  });
+ 
+  // chips de tiempo (selección única)
+  document.querySelectorAll("#timeFilters .chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      document.querySelectorAll("#timeFilters .chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      timeFilter = chip.dataset.time;
+      render();
+    });
+  });
+ 
+  // chips de preparación previa (selección única)
+  document.querySelectorAll("#prepFilters .chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      document.querySelectorAll("#prepFilters .chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      prepFilter = chip.dataset.prep;
+      render();
+    });
+  });
+ 
+  document.getElementById("searchInput").addEventListener("input", (e) => {
+    searchTerm = e.target.value.trim().toLowerCase();
+    render();
+  });
+ 
+  function render(){
+    const grid = document.getElementById("grid");
+    grid.innerHTML = "";
+ 
+    const filtered = RECIPES.filter(r => {
+      if (searchTerm && !r.title.toLowerCase().includes(searchTerm)) return false;
+      if (r.allergens.some(a => excludedAllergens.has(a))) return false;
+      if (timeFilter !== "all" && timeCategory(r.timeMinutes) !== timeFilter) return false;
+      if (prepFilter === "yes" && !r.requiresPrep) return false;
+      if (prepFilter === "no" && r.requiresPrep) return false;
+      return true;
+    });
+ 
+    if (filtered.length === 0){
+      grid.innerHTML = `<p class="empty">No hay recetas que cumplan estos filtros.</p>`;
+      return;
+    }
+ 
+    filtered.forEach(r => {
+      const card = document.createElement("a");
+      card.className = "card";
+      card.href = r.file;
+ 
+      const allergenBadges = r.allergens.map(id => {
+        const a = ALLERGENS.find(x => x.id === id);
+        return `<span class="badge">${a.emoji} ${a.label}</span>`;
+      }).join("");
+ 
+      card.innerHTML = `
+        <h2>${r.title}</h2>
+        <div class="badges">
+          <span class="badge time">⏱ ${r.timeMinutes} min</span>
+          ${r.requiresPrep ? `<span class="badge prep">⚠ ${r.prepText}</span>` : ""}
+          ${allergenBadges}
+        </div>
+      `;
+      grid.appendChild(card);
     });
   }
-  minusBtn.addEventListener('click', () => { servingsInput.value = Math.max(1, Number(servingsInput.value) - 1); renderServings(); });
-  plusBtn.addEventListener('click', () => { servingsInput.value = Number(servingsInput.value) + 1; renderServings(); });
-  servingsInput.addEventListener('input', renderServings);
-  renderServings();
+ 
+  render();
 </script>
-
+ 
 </body>
 </html>
+ 
