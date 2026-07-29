@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Arroz de carne "del señorito" con caldo de huesos</title>
+<style>
+  :root{
+    --bg: #101d15;
+    --line: #3a5a44;
+    --line-soft: #24382b;
+    --text: #eef3ec;
+    --text-dim: #b9c7bd;
+    --highlight: #3d6b4a;
+    --highlight-border: #7fd99a;
+  }
+  * { box-sizing: border-box; }
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 28px 16px 80px;
+  }
+  h1{ text-align: center; font-size: 1.35rem; margin: 0 0 4px; }
+  .subtitle{ text-align: center; color: var(--text-dim); font-size: .9rem; margin: 0 0 22px; }
+  table{
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: 1px solid var(--line);
+  }
+  td{
+    border: 1px solid var(--line-soft);
+    padding: 14px 16px;
+    font-size: .92rem;
+    line-height: 1.35;
+    vertical-align: middle;
+    transition: background .25s, border-color .25s;
+  }
+  td.full{ text-align: center; font-weight: 700; background: rgba(255,255,255,0.02); }
+  td.ing{ text-align: left; }
+  td.step{ text-align: center; color: var(--text-dim); }
+  td.step.strong{ color: var(--text); font-weight: 600; }
+  td.final{ text-align: center; font-weight: 600; }
+
+  td.active{
+    background: var(--highlight);
+    color: #fff;
+    border: 2px solid var(--highlight-border);
+  }
+
+  .nav{
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    padding: 14px;
+    background: rgba(16,29,21,0.95);
+    border-top: 1px solid var(--line);
+  }
+  .nav button{
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: var(--line-soft);
+    color: var(--text);
+    cursor: pointer;
+  }
+  .nav button:disabled{ opacity: .4; cursor: default; }
+  .nav .label{
+    align-self: center;
+    color: var(--text-dim);
+    font-size: .85rem;
+    min-width: 160px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<h1>Arroz de carne "del señorito" con caldo de huesos</h1>
+<p class="subtitle">4 personas · ~45 min activos + caldo de huesos hecho de antemano</p>
+
+<table>
+  <tr><td class="full" data-step="1" colspan="4">Tener el caldo de huesos hirviendo aparte, bien concentrado y colado</td></tr>
+  <tr><td class="full" data-step="1" colspan="4">Salpimentar y secar bien las carnes</td></tr>
+
+  <tr>
+    <td class="ing">300 g costilla de cerdo deshuesada</td>
+    <td class="step" data-step="2" rowspan="3">trocear en dados de 3 cm</td>
+    <td class="step strong" data-step="2" rowspan="3">dorar por tandas a fuego fuerte, 4–5 min · reservar</td>
+    <td class="final" data-step="5" rowspan="12">10 min a fuego fuerte + 8 min a fuego suave · apagar, tapar con un paño y reposar 5 min · servir con alioli aparte y un chorrito de AOVE</td>
+  </tr>
+  <tr><td class="ing">200 g contramuslo de pollo deshuesado</td></tr>
+  <tr><td class="ing">100 g panceta fresca, en dados pequeños</td></tr>
+
+  <tr>
+    <td class="ing">1 cebolla (150 g)</td>
+    <td class="step" data-step="3" rowspan="5">picar fino / rallar</td>
+    <td class="step strong" data-step="3" rowspan="5">pochar 12–15 min a fuego medio, hasta que el tomate oscurezca</td>
+  </tr>
+  <tr><td class="ing">1 pimiento rojo (150 g)</td></tr>
+  <tr><td class="ing">2 dientes de ajo</td></tr>
+  <tr><td class="ing">2 tomates maduros (200 g)</td></tr>
+  <tr><td class="ing">1 ñora hidratada (o 1 cdta pimentón dulce)</td></tr>
+
+  <tr>
+    <td class="ing">320 g arroz bomba + pizca de azafrán</td>
+    <td class="step" data-step="3">tener listo</td>
+    <td class="step strong" data-step="3">añadir al sofrito y nacarar 2 min removiendo</td>
+  </tr>
+
+  <tr>
+    <td class="ing">800 ml caldo de huesos</td>
+    <td class="step" data-step="4" rowspan="2">mantener hirviendo aparte / desmigar</td>
+    <td class="step strong" data-step="4" rowspan="2">verter el caldo de golpe, incorporar las carnes reservadas y la morcilla · no remover más</td>
+  </tr>
+  <tr><td class="ing">100 g morcilla, desmigada</td></tr>
+
+  <tr>
+    <td class="ing">AOVE y sal, al gusto</td>
+    <td class="step" data-step="4">—</td>
+    <td class="step strong" data-step="4">ajustar de sal durante el sofrito y el caldo</td>
+  </tr>
+</table>
+
+<div class="nav">
+  <button id="prevBtn">◀ Paso anterior</button>
+  <span class="label" id="stepLabel">Paso 1 de 5</span>
+  <button id="nextBtn">Paso siguiente ▶</button>
+</div>
+
+<script>
+  const totalSteps = 5;
+  let current = 1;
+  const cells = document.querySelectorAll('[data-step]');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const label = document.getElementById('stepLabel');
+
+  function render(){
+    cells.forEach(c => c.classList.toggle('active', Number(c.dataset.step) === current));
+    label.textContent = `Paso ${current} de ${totalSteps}`;
+    prevBtn.disabled = current === 1;
+    nextBtn.disabled = current === totalSteps;
+  }
+  prevBtn.addEventListener('click', () => { if (current > 1) current--; render(); });
+  nextBtn.addEventListener('click', () => { if (current < totalSteps) current++; render(); });
+  render();
+</script>
+
+</body>
+</html>
