@@ -317,6 +317,15 @@ def validar_receta(ruta: Path) -> None:
     if 'lang="es"' not in texto:
         aviso(f"{nombre}: el <html> no declara lang=\"es\".")
 
+    # --- vuelta al índice ---
+    if 'class="back"' not in texto:
+        error(
+            f"{nombre}: falta el enlace de vuelta al índice "
+            f'(<a class="back" href="../index.html">◀ Todas las recetas</a>, antes del <h1>).'
+        )
+    elif not re.search(r'class="back"[^>]*href="\.\./index\.html"', texto):
+        error(f'{nombre}: el enlace .back debería apuntar a "../index.html".')
+
 
 # --------------------------------------------------------------------------
 

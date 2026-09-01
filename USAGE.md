@@ -49,6 +49,9 @@ Si no queda nada, sale un aviso en lugar de una rejilla vacía.
 
 ## Dentro de una receta
 
+**Volver.** Arriba a la izquierda, *◀ Todas las recetas* te devuelve al
+índice con los filtros en blanco.
+
 **Comensales.** Arriba del todo. Con `−` / `+` o escribiendo el número. Todas
 las cantidades en dorado se recalculan al instante. Las recetas están escritas
 para **4 comensales**, así que pedir 6 multiplica por 1,5.

@@ -74,6 +74,10 @@ En la cabecera rellenas el `<title>`, el `<h1>` y el subtítulo. El subtítulo
 lleva el tiempo total y, si hace falta, una nota corta:
 `~45 min` o `~20 min activos + mínimo 2h de nevera`.
 
+Encima del título va el enlace de vuelta al índice
+(`<a class="back" href="../index.html">`). No lo quites ni le cambies la
+ruta: el validador lo comprueba.
+
 ## 2. Escribe la tabla
 
 Esta es la parte con miga. La tabla se lee como un **diagrama de Gantt**: cada
