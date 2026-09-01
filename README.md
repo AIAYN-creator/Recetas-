@@ -98,6 +98,8 @@ mano y difícil de ver a ojo:
 - que la tabla de cada receta sea un rectángulo perfecto — con `rowspan` y
   `colspan` basta una celda de menos para descuadrar todas las columnas;
 - que los pasos vayan de 1 a N sin saltos y que `totalSteps` coincida;
+- que el título y el tiempo digan lo mismo en la receta y en el índice, que es
+  información duplicada y se separa sola;
 - que las cantidades sean escalables y que `BASE_SERVINGS` case con el número
   de comensales de partida.
 

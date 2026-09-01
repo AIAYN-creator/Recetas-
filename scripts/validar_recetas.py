@@ -103,8 +103,16 @@ def trocear_objetos(bloque: str) -> list[str]:
 
 
 def campo(objeto: str, clave: str) -> str | None:
-    m = re.search(rf'\b{clave}\s*:\s*("[^"]*"|\'[^\']*\'|[^,\n]+)', objeto)
-    return m.group(1).strip().strip("\"'") if m else None
+    """Extrae `clave: valor` de un objeto JS, respetando las comillas escapadas."""
+    m = re.search(
+        rf'\b{clave}\s*:\s*("(?:[^"\\]|\\.)*"|\'(?:[^\'\\]|\\.)*\'|[^,\n]+)', objeto
+    )
+    if not m:
+        return None
+    bruto = m.group(1).strip()
+    if len(bruto) >= 2 and bruto[0] in "\"'" and bruto[-1] == bruto[0]:
+        return re.sub(r"\\(.)", r"\1", bruto[1:-1])  # cadena: sin comillas ni escapes
+    return bruto
 
 
 def lista_campo(objeto: str, clave: str) -> list[str] | None:
@@ -112,6 +120,34 @@ def lista_campo(objeto: str, clave: str) -> list[str] | None:
     if not m:
         return None
     return [x.strip().strip("\"'") for x in m.group(1).split(",") if x.strip()]
+
+
+def comparar_con_receta(ruta, archivo: str, titulo: str | None, minutos: str | None) -> None:
+    """El título y el tiempo viven a la vez en la receta y en el índice.
+
+    Es duplicación inevitable, porque el índice no abre los archivos de receta:
+    solo enlaza a ellos. Lo único que evita que se separen es comprobarlo.
+    """
+    texto = ruta.read_text(encoding="utf-8")
+
+    m_h1 = re.search(r"<h1>(.*?)</h1>", texto, re.S)
+    if m_h1 and titulo and m_h1.group(1).strip() != titulo:
+        error(
+            f"index.html: el `title` de «{archivo}» no coincide con su <h1>.\n"
+            f"           índice: {titulo!r}\n"
+            f"           <h1>  : {m_h1.group(1).strip()!r}"
+        )
+
+    m_sub = re.search(r'<p class="subtitle">(.*?)</p>', texto, re.S)
+    if m_sub and minutos and minutos.isdigit():
+        m_min = re.search(r"(\d+)\s*min", m_sub.group(1))
+        if not m_min:
+            aviso(f"{archivo}: el subtítulo no dice los minutos; no puedo contrastar timeMinutes.")
+        elif m_min.group(1) != minutos:
+            error(
+                f"index.html: el tiempo de «{archivo}» no coincide con su subtítulo "
+                f"(índice: {minutos} min · subtítulo: {m_min.group(1)} min)."
+            )
 
 
 def validar_indice() -> list[dict]:
@@ -153,6 +189,9 @@ def validar_indice() -> list[dict]:
         minutos = campo(objeto, "timeMinutes")
         if minutos is None or not minutos.isdigit():
             error(f"index.html: «{etiqueta}» necesita `timeMinutes` como número entero.")
+
+        if (RAIZ / archivo).exists():
+            comparar_con_receta(RAIZ / archivo, archivo, titulo, minutos)
 
         prep = campo(objeto, "requiresPrep")
         if prep not in ("true", "false"):
@@ -314,6 +353,14 @@ def validar_receta(ruta: Path) -> None:
     # --- cabecera ---
     if not re.search(r"<title>[^<]+</title>", texto):
         error(f"{nombre}: falta el <title> de la página.")
+    else:
+        m_t = re.search(r"<title>(.*?)</title>", texto, re.S)
+        m_h = re.search(r"<h1>(.*?)</h1>", texto, re.S)
+        if m_t and m_h and m_t.group(1).strip() != m_h.group(1).strip():
+            error(
+                f"{nombre}: el <title> y el <h1> no dicen lo mismo "
+                f"({m_t.group(1).strip()!r} vs {m_h.group(1).strip()!r})."
+            )
     if 'lang="es"' not in texto:
         aviso(f"{nombre}: el <html> no declara lang=\"es\".")
 

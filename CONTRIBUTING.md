@@ -167,10 +167,10 @@ pero **no la ve nadie**. Añade una entrada al final de la lista:
 
 | Campo | Qué poner |
 | --- | --- |
-| `title` | El mismo título que el `<h1>` de la receta. |
+| `title` | El mismo título que el `<h1>` de la receta, carácter por carácter. El validador lo comprueba. |
 | `file` | La ruta, empezando por `recetas/`. |
 | `allergens` | Lista de identificadores de la tabla de abajo. `[]` si no lleva ninguno. |
-| `timeMinutes` | Tiempo **activo** en minutos, el que pasas en la cocina. Las horas de nevera o de fermentación no cuentan: eso va en `prepText`. |
+| `timeMinutes` | Tiempo **activo** en minutos, el que pasas en la cocina. Las horas de nevera o de fermentación no cuentan: eso va en `prepText`. Tiene que coincidir con los minutos del subtítulo de la receta. |
 | `requiresPrep` | `true` si hace falta trabajo por adelantado (un caldo del día antes, horas de reposo). |
 | `prepText` | Solo si `requiresPrep` es `true`. Sale como aviso rojo en la tarjeta. |
 | `diet` | `"ninguna"`, `"vegetariana"` o `"vegana"`. |
