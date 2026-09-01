@@ -2,6 +2,10 @@
   <img src="assets/logo.png" alt="Mi Recetario" width="480">
 </p>
 
+<p align="center">
+  <a href="https://aiayn-creator.github.io/Recetas-/"><strong>Abrir el recetario &rarr;</strong></a>
+</p>
+
 Un recetario web pensado para usarse **con las manos llenas de harina**: cada
 receta es una sola página que te dice, paso a paso, qué ingrediente entra en
 cada momento y qué se hace con él.
@@ -22,22 +26,31 @@ Además, cada receta:
 El índice permite buscar por nombre y filtrar por alérgenos a excluir, tiempo
 total, preparación previa y dieta (vegetariana / vegana).
 
+Está publicado en internet, así que basta con pasar el enlace: quien lo reciba
+puede consultar todas las recetas desde el móvil, la tablet o el ordenador, sin
+instalar nada y sin tener cuenta de GitHub.
+
 ## Verlo
 
-No hay que compilar ni instalar nada: es HTML, CSS y JavaScript a pelo, sin
-dependencias ni proceso de build.
+**https://aiayn-creator.github.io/Recetas-/**
 
-La forma rápida es abrir `index.html` con doble clic. Para que se comporte
-exactamente igual que publicado, levanta un servidor local:
+Ese es el enlace que hay que compartir. Se republica solo: cada push a `main`
+deja el sitio actualizado en un par de minutos.
+
+Cómo usar los filtros, el ajustador de comensales y la navegación por pasos:
+**[USAGE.md](USAGE.md)**.
+
+### En local
+
+Solo hace falta si vas a tocar el código. No hay que compilar ni instalar nada
+—es HTML, CSS y JavaScript a pelo, sin dependencias ni proceso de build—, pero
+conviene servirlo por HTTP para que se comporte igual que publicado:
 
 ```bash
 python -m http.server 5173
 ```
 
-y abre <http://localhost:5173>.
-
-Cómo usar los filtros, el ajustador de comensales y la navegación por pasos:
-**[USAGE.md](USAGE.md)**.
+y abrir <http://localhost:5173>.
 
 ## Qué hay dentro
 

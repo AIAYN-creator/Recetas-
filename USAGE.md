@@ -6,23 +6,31 @@ Cómo se usa el recetario, tanto en el índice como dentro de una receta.
 - [El índice: buscar y filtrar](#el-índice-buscar-y-filtrar)
 - [Dentro de una receta](#dentro-de-una-receta)
 - [Leer la tabla](#leer-la-tabla)
-- [Publicarlo en internet](#publicarlo-en-internet)
+- [Cómo está publicado](#cómo-está-publicado)
 
 ## Abrirlo
 
-Doble clic en `index.html` y listo: no hay servidor, ni build, ni dependencias.
+El recetario vive en **https://aiayn-creator.github.io/Recetas-/**.
 
-Si vas a tocar el código, es mejor servirlo por HTTP, que es como se comportará
-una vez publicado:
+No hay nada que instalar ni ninguna cuenta que crear: cualquiera con el enlace
+entra y ve todas las recetas. Es el enlace que se manda por WhatsApp cuando
+alguien te pide "la receta esa del arroz".
+
+En la cocina lo cómodo es abrirlo en el móvil o la tablet: la tabla hace scroll
+horizontal y la barra de pasos queda fija abajo, al alcance del pulgar. Si lo
+vas a usar a menudo, guárdalo en la pantalla de inicio y se comporta como una
+app, con su icono.
+
+### En local
+
+Solo si vas a tocar el código. Sírvelo por HTTP, que es como se comporta una vez
+publicado:
 
 ```bash
 python -m http.server 5173
 ```
 
 Y abre <http://localhost:5173>.
-
-En la cocina lo cómodo es abrirlo en el móvil o la tablet: la tabla hace scroll
-horizontal y la barra de pasos queda fija abajo, al alcance del pulgar.
 
 ## El índice: buscar y filtrar
 
@@ -95,10 +103,12 @@ Leyendo una fila entera de izquierda a derecha tienes la vida completa de ese
 ingrediente. Leyendo una columna de arriba abajo tienes todo lo que pasa en ese
 momento de la receta.
 
-## Publicarlo en internet
+## Cómo está publicado
 
-Al ser HTML estático, GitHub Pages lo sirve tal cual: en **Settings → Pages**,
-elige la rama `main` y la carpeta raíz (`/`). En un par de minutos queda en
-`https://<usuario>.github.io/<repositorio>/`.
+El sitio lo sirve GitHub Pages directamente desde la rama `main`, sin
+intermediarios: al ser HTML estático no hay build, ni acción de despliegue, ni
+configuración que mantener.
 
-No hace falta nada más: ni acción de despliegue, ni configuración, ni build.
+En la práctica eso significa que **cada push a `main` republica el recetario**.
+Un par de minutos después de fusionar una receta nueva, ya está en
+https://aiayn-creator.github.io/Recetas-/ para todo el mundo.
