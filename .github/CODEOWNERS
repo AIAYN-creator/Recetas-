@@ -1,0 +1,11 @@
+# Toda la repo la revisa y aprueba su dueño antes del merge.
+# GitHub pide su revisión automáticamente en cada Pull Request.
+#
+# Para que la aprobación sea OBLIGATORIA y no solo una sugerencia, hace falta
+# activar además una regla de protección sobre `main`:
+#   Settings > Branches > Add branch ruleset
+#     - Require a pull request before merging
+#     - Require review from Code Owners
+# Sin esa regla, este archivo solo sirve para pedir la revisión, no para exigirla.
+
+*  @AIAYN-creator

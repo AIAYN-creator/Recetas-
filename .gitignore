@@ -1,0 +1,29 @@
+# --- Sistema operativo ---
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
+
+# --- Editores ---
+.vscode/
+.idea/
+*.sublime-workspace
+*.swp
+*~
+
+# --- Claude Code ---
+# La configuración compartida (.claude/launch.json) sí se versiona.
+# Los ajustes personales de cada persona, no.
+.claude/settings.local.json
+.claude/*.local.json
+
+# --- Python (script de validación) ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# --- Temporales ---
+*.log
+*.tmp
+*.bak

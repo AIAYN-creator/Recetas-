@@ -1,0 +1,108 @@
+name: Proponer una receta
+description: Para proponer una receta sin tener que escribir HTML
+title: "[Receta] "
+labels: ["receta"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Escríbela en texto normal, sin preocuparte del formato: ya la montaremos
+        en HTML. Cuanto más concretas sean las cantidades y los tiempos, antes
+        podrá entrar.
+
+  - type: input
+    id: nombre
+    attributes:
+      label: Nombre del plato
+      placeholder: Fideuá de marisco
+    validations:
+      required: true
+
+  - type: textarea
+    id: ingredientes
+    attributes:
+      label: Ingredientes para 4 comensales
+      description: Uno por línea, con cantidad y unidad. Indica también cómo se prepara cada uno (picado, en juliana, escurrido...).
+      placeholder: |
+        400 g de fideos del nº 2
+        500 g de gambas peladas
+        300 g de sepia, en dados
+        1 l de fumet de pescado
+        2 dientes de ajo, laminados
+    validations:
+      required: true
+
+  - type: textarea
+    id: pasos
+    attributes:
+      label: Pasos
+      description: En orden. Con tiempos y temperaturas concretos, y diciendo qué se puede ir haciendo a la vez.
+      placeholder: |
+        1. Calentar el fumet y mantenerlo caliente.
+        2. Sofreír el ajo y la sepia 5 min a fuego medio.
+        3. Mientras, tostar los fideos aparte 2 min...
+    validations:
+      required: true
+
+  - type: input
+    id: tiempo
+    attributes:
+      label: Tiempo activo
+      description: El que pasas en la cocina. Las horas de nevera o de fermentación van en el campo siguiente.
+      placeholder: 50 min
+    validations:
+      required: true
+
+  - type: input
+    id: preparacion-previa
+    attributes:
+      label: Preparación previa
+      description: Caldos del día antes, horas de reposo, marinados... Déjalo vacío si se hace del tirón.
+      placeholder: Fumet de pescado hecho con antelación
+
+  - type: checkboxes
+    id: alergenos
+    attributes:
+      label: Alérgenos
+      description: Marca todos los que lleve. Ante la duda, márcalo.
+      options:
+        - label: Gluten
+        - label: Crustáceos
+        - label: Huevo
+        - label: Pescado
+        - label: Cacahuete
+        - label: Soja
+        - label: Lácteos
+        - label: Frutos de cáscara
+        - label: Apio
+        - label: Mostaza
+        - label: Sésamo
+        - label: Sulfitos (ojo, el vino lleva)
+        - label: Altramuces
+        - label: Moluscos
+
+  - type: dropdown
+    id: dieta
+    attributes:
+      label: Dieta
+      description: Vegetariana admite huevo y lácteos. Vegana, ningún producto animal.
+      options:
+        - Ninguna
+        - Vegetariana
+        - Vegana
+    validations:
+      required: true
+
+  - type: textarea
+    id: contexto
+    attributes:
+      label: De dónde sale
+      description: ¿La has cocinado? ¿Cuántas veces? ¿Es de familia, de un libro, de una región concreta?
+
+  - type: checkboxes
+    id: confirmacion
+    attributes:
+      label: Antes de enviar
+      options:
+        - label: He comprobado que esta receta no está ya en el índice
+          required: true

@@ -1,0 +1,20 @@
+name: Validar recetario
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Sin dependencias: el validador usa solo la librería estándar
+      - name: Validar índice, recetas y plantilla
+        run: python scripts/validar_recetas.py

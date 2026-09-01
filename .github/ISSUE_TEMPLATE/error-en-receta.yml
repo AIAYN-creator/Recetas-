@@ -1,0 +1,36 @@
+name: Error en una receta
+description: Algo está mal, roto o descuadrado en una receta o en el índice
+title: "[Error] "
+labels: ["error"]
+body:
+  - type: input
+    id: receta
+    attributes:
+      label: Receta afectada
+      description: Nombre o archivo. Pon "índice" si el problema está en la portada.
+      placeholder: recetas/paella-valenciana.html
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo de problema
+      options:
+        - La receta es incorrecta (cantidades, tiempos, método)
+        - Alérgeno mal declarado o ausente
+        - La dieta declarada no es correcta
+        - La tabla se ve descuadrada
+        - Los pasos o el ajuste de comensales no funcionan
+        - Enlace roto
+        - Otro
+    validations:
+      required: true
+
+  - type: textarea
+    id: descripcion
+    attributes:
+      label: Qué pasa
+      description: Qué esperabas y qué te has encontrado. Si es visual, adjunta una captura y di en qué navegador.
+    validations:
+      required: true
