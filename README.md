@@ -1,4 +1,6 @@
-# Mi Recetario
+<p align="center">
+  <img src="assets/logo.png" alt="Mi Recetario" width="480">
+</p>
 
 Un recetario web pensado para usarse **con las manos llenas de harina**: cada
 receta es una sola página que te dice, paso a paso, qué ingrediente entra en
@@ -87,6 +89,30 @@ mano y difícil de ver a ojo:
   de comensales de partida.
 
 Se ejecuta solo en cada Pull Request.
+
+## La marca
+
+Los assets viven en `assets/` y se generan desde un único script, para que la
+geometría y los colores no se dupliquen a mano:
+
+```bash
+python scripts/generar_logo.py
+```
+
+| Archivo | Para qué |
+| --- | --- |
+| `icono.svg` | Favicon de todas las páginas. |
+| `icono-180.png` | Icono al guardar en la pantalla de inicio del móvil. |
+| `logo.png` / `logo.svg` | El logotipo con el nombre, para el README. |
+| `banner.png` | 1200×630, la imagen que sale al compartir el enlace. |
+
+La marca es la propia tabla de una receta en miniatura: la columna de
+ingredientes a la izquierda, una celda con `rowspan` y, en rojo con borde
+dorado, el paso activo — el mismo estilo `td.active` del CSS.
+
+El banner se usa como `og:image` en `index.html`. Para que salga también al
+compartir el enlace **del repositorio**, hay que subirlo a mano en
+*Settings → General → Social preview*: GitHub no lo coge del `og:image`.
 
 ## Licencia
 

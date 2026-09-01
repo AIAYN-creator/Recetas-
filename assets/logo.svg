@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 128" role="img" aria-label="Mi Recetario">
+  <title>Mi Recetario</title>
+  <rect width="480" height="128" rx="16" fill="#1a1210"/>
+  <g transform="translate(16 16.0) scale(1.5000)">
+    <rect x="1" y="1" width="62" height="62" rx="14" fill="#1a1210" stroke="#4a2e28" stroke-width="2"/>
+  <rect x="12.00" y="12.00" width="14.00" height="7.00" rx="2.00" fill="#d1a355"/>
+  <rect x="12.00" y="23.00" width="14.00" height="7.00" rx="2.00" fill="#d1a355"/>
+  <rect x="12.00" y="34.00" width="14.00" height="7.00" rx="2.00" fill="#d1a355"/>
+  <rect x="12.00" y="45.00" width="14.00" height="7.00" rx="2.00" fill="#d1a355"/>
+  <rect x="29.00" y="12.00" width="23.00" height="7.00" rx="2.00" fill="#8a6a45"/>
+  <rect x="29.00" y="23.00" width="23.00" height="18.00" rx="2.00" fill="#b3312c" stroke="#d1a355" stroke-width="2.00"/>
+  <rect x="29.00" y="45.00" width="23.00" height="7.00" rx="2.00" fill="#8a6a45"/>
+  </g>
+  <text x="132" y="62" font-family="Bebas Neue, Arial Narrow, Haettenschweiler, sans-serif"
+        font-size="42" letter-spacing="2" fill="#d1a355">MI RECETARIO</text>
+  <text x="132" y="88" font-family="Work Sans, Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="16" fill="#c9b8ae">Recetas que se leen de un vistazo</text>
+</svg>

@@ -317,6 +317,12 @@ def validar_receta(ruta: Path) -> None:
     if 'lang="es"' not in texto:
         aviso(f"{nombre}: el <html> no declara lang=\"es\".")
 
+    # --- marca ---
+    if "assets/icono.svg" not in texto:
+        error(f'{nombre}: falta el favicon (<link rel="icon" href="../assets/icono.svg">).')
+    if 'name="viewport"' not in texto:
+        error(f"{nombre}: falta el <meta name=\"viewport\">; en el móvil se vería diminuta.")
+
     # --- vuelta al índice ---
     if 'class="back"' not in texto:
         error(
