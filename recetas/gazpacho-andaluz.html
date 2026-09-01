@@ -73,26 +73,33 @@
     font-size: .95rem;
   }
 
+  .table-wrap{
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
   table{
     width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
+    min-width: 900px;
     border-collapse: collapse;
-    border: 1px solid var(--line);
+    border: 2px solid var(--line);
+    background: var(--bg);
   }
   td{
-    border: 1px solid var(--line-soft);
-    padding: 14px 16px;
-    font-size: .92rem;
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+    border-color: var(--line-soft);
+    padding: 12px 14px;
+    font-size: .88rem;
     line-height: 1.35;
     vertical-align: middle;
     transition: background .25s, border-color .25s;
   }
   td.full{ text-align: center; font-weight: 700; background: rgba(255,255,255,0.03); }
   td.ing{ text-align: left; }
-  td.step{ text-align: center; }
-  td.step .prep{ display: block; color: var(--text-dim); }
-  td.step .cook{ display: block; color: var(--text); font-weight: 600; margin-top: 6px; }
+  td.prep{ text-align: center; color: var(--text-dim); }
+  td.cook{ text-align: center; color: var(--text); font-weight: 600; }
+  td.gap{ border-right: none; }
   td.final{ text-align: center; font-weight: 600; }
 
   .qty{ color: var(--brand-gold); font-weight: 700; }
@@ -146,32 +153,64 @@
   <button id="plusBtn">+</button>
 </div>
 
+<div class="table-wrap">
 <table>
-  <tr><td class="full" data-step="1" colspan="3">Remojar el pan en un chorrito de agua o vinagre 10 min</td></tr>
+  <tr><td class="full" data-step="1" colspan="8">Remojar el pan en un chorrito de agua o vinagre 10 min</td></tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="1000" data-unit="g">1000</span> g tomates maduros, a poder ser de pera</td>
-    <td class="step" data-step="2" rowspan="6"><span class="prep">trocear en trozos grandes / pelar y escurrir</span><span class="cook">triturar todo junto a máxima potencia hasta conseguir una crema fina</span></td>
+    <td class="prep" data-step="2" rowspan="6">trocear en trozos grandes / pelar y escurrir</td>
+    <td class="cook" data-step="2" rowspan="6">triturar todo junto a máxima potencia hasta conseguir una crema fina</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
     <td class="final" data-step="5" rowspan="10">Colar si se desea una textura más fina, rectificar de sal y enfriar en la nevera mínimo 2h · servir muy frío, con un chorrito de AOVE por encima</td>
   </tr>
-  <tr><td class="ing"><span class="qty" data-base="100" data-unit="g">100</span> g pimiento verde italiano</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="150" data-unit="g">150</span> g pepino, pelado</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="50" data-unit="g">50</span> g cebolla</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> diente de ajo</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="50" data-unit="g">50</span> g pan duro (de payés)</td></tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="100" data-unit="g">100</span> g pimiento verde italiano</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="150" data-unit="g">150</span> g pepino, pelado</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="50" data-unit="g">50</span> g cebolla</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> diente de ajo</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="50" data-unit="g">50</span> g pan duro (de payés)</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="100" data-unit="ml">100</span> ml AOVE</td>
-    <td class="step" data-step="3" rowspan="3"><span class="prep">tener listo</span><span class="cook">añadir en hilo mientras se sigue triturando, hasta emulsionar</span></td>
+    <td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="3" rowspan="3">tener listo</td>
+    <td class="cook" data-step="3" rowspan="3">añadir en hilo mientras se sigue triturando, hasta emulsionar</td>
+    <td class="gap"></td><td class="gap"></td>
   </tr>
-  <tr><td class="ing"><span class="qty" data-base="30" data-unit="ml">30</span> ml vinagre de vino, a poder ser de Jerez</td></tr>
-  <tr><td class="ing">Sal, al gusto</td></tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="30" data-unit="ml">30</span> ml vinagre de vino, a poder ser de Jerez</td>
+    <td class="gap"></td><td class="gap"></td>
+    <td class="gap"></td><td class="gap"></td>
+  </tr>
+  <tr>
+    <td class="ing">Sal, al gusto</td>
+    <td class="gap"></td><td class="gap"></td>
+    <td class="gap"></td><td class="gap"></td>
+  </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="250" data-unit="ml">250</span> ml agua fría</td>
-    <td class="step" data-step="4"><span class="prep">tener fría</span><span class="cook">añadir poco a poco hasta conseguir la consistencia deseada</span></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="4">tener fría</td>
+    <td class="cook" data-step="4">añadir poco a poco hasta conseguir la consistencia deseada</td>
   </tr>
 </table>
+</div>
 
 <div class="nav">
   <button id="prevBtn">◀ Paso anterior</button>

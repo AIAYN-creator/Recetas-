@@ -73,26 +73,33 @@
     font-size: .95rem;
   }
 
+  .table-wrap{
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
   table{
     width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
+    min-width: 1100px;
     border-collapse: collapse;
-    border: 1px solid var(--line);
+    border: 2px solid var(--line);
+    background: var(--bg);
   }
   td{
-    border: 1px solid var(--line-soft);
-    padding: 14px 16px;
-    font-size: .92rem;
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+    border-color: var(--line-soft);
+    padding: 12px 14px;
+    font-size: .88rem;
     line-height: 1.35;
     vertical-align: middle;
     transition: background .25s, border-color .25s;
   }
   td.full{ text-align: center; font-weight: 700; background: rgba(255,255,255,0.03); }
   td.ing{ text-align: left; }
-  td.step{ text-align: center; }
-  td.step .prep{ display: block; color: var(--text-dim); }
-  td.step .cook{ display: block; color: var(--text); font-weight: 600; margin-top: 6px; }
+  td.prep{ text-align: center; color: var(--text-dim); }
+  td.cook{ text-align: center; color: var(--text); font-weight: 600; }
+  td.gap{ border-right: none; }
   td.final{ text-align: center; font-weight: 600; }
 
   .qty{ color: var(--brand-gold); font-weight: 700; }
@@ -146,44 +153,87 @@
   <button id="plusBtn">+</button>
 </div>
 
+<div class="table-wrap">
 <table>
-  <tr><td class="full" data-step="1" colspan="3">Salpimentar el conejo y el pollo</td></tr>
-  <tr><td class="full" data-step="1" colspan="3">Tener la torta de gazpacho troceada a mano</td></tr>
+  <tr><td class="full" data-step="1" colspan="12">Salpimentar el conejo y el pollo</td></tr>
+  <tr><td class="full" data-step="1" colspan="12">Tener la torta de gazpacho troceada a mano</td></tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="100" data-unit="ml">100</span> ml AOVE</td>
-    <td class="step" data-step="2" rowspan="3"><span class="prep">trocear las carnes en piezas medianas</span><span class="cook">dorar en el aceite a fuego fuerte, 10 min por tandas · reservar</span></td>
+    <td class="prep" data-step="2" rowspan="3">trocear las carnes en piezas medianas</td>
+    <td class="cook" data-step="2" rowspan="3">dorar en el aceite a fuego fuerte, 10 min por tandas · reservar</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
     <td class="final" data-step="7" rowspan="13">Rectificar de sal, dejar reposar 5 min y servir bien caliente en cazuela de barro</td>
   </tr>
-  <tr><td class="ing"><span class="qty" data-base="400" data-unit="g">400</span> g conejo troceado</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="400" data-unit="g">400</span> g pollo troceado (o perdiz limpia)</td></tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="400" data-unit="g">400</span> g conejo troceado</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="400" data-unit="g">400</span> g pollo troceado (o perdiz limpia)</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="150" data-unit="g">150</span> g cebolla, picada</td>
-    <td class="step" data-step="3" rowspan="3"><span class="prep">picar fino</span><span class="cook">pochar en el mismo aceite 10 min</span></td>
+    <td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="3" rowspan="3">picar fino</td>
+    <td class="cook" data-step="3" rowspan="3">pochar en el mismo aceite 10 min</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
   </tr>
-  <tr><td class="ing"><span class="qty" data-base="100" data-unit="g">100</span> g pimiento verde, picado</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="2" data-unit="ud" data-decimals="0">2</span> dientes de ajo, picados</td></tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="100" data-unit="g">100</span> g pimiento verde, picado</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="2" data-unit="ud" data-decimals="0">2</span> dientes de ajo, picados</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="200" data-unit="g">200</span> g tomates maduros, rallados</td>
-    <td class="step" data-step="4" rowspan="4"><span class="prep">rallar / tener listo</span><span class="cook">añadir el tomate y las hierbas, sofreír 5 min más</span></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="4" rowspan="4">rallar / tener listo</td>
+    <td class="cook" data-step="4" rowspan="4">añadir el tomate y las hierbas, sofreír 5 min más</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
   </tr>
-  <tr><td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> hoja de laurel</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> ramita de tomillo</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> ramita de romero</td></tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> hoja de laurel</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> ramita de tomillo</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> ramita de romero</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="1200" data-unit="ml">1200</span> ml agua</td>
-    <td class="step" data-step="5" rowspan="2"><span class="prep">calentar aparte</span><span class="cook">incorporar las carnes reservadas, cubrir con el agua y cocer 35–40 min a fuego medio-bajo</span></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="5" rowspan="2">calentar aparte</td>
+    <td class="cook" data-step="5" rowspan="2">incorporar las carnes reservadas, cubrir con el agua y cocer 35–40 min a fuego medio-bajo</td>
+    <td class="gap"></td><td class="gap"></td>
   </tr>
-  <tr><td class="ing">Sal y pimienta, al gusto</td></tr>
+  <tr>
+    <td class="ing">Sal y pimienta, al gusto</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="gap"></td><td class="gap"></td>
+  </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="200" data-unit="g">200</span> g torta de gazpacho (pan ácimo)</td>
-    <td class="step" data-step="6"><span class="prep">trocear a mano</span><span class="cook">añadir al guiso los últimos 5 min, dejando que se deshaga y espese el caldo</span></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="6">trocear a mano</td>
+    <td class="cook" data-step="6">añadir al guiso los últimos 5 min, dejando que se deshaga y espese el caldo</td>
   </tr>
 </table>
+</div>
 
 <div class="nav">
   <button id="prevBtn">◀ Paso anterior</button>

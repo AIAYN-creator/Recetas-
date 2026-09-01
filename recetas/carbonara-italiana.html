@@ -73,26 +73,33 @@
     font-size: .95rem;
   }
 
+  .table-wrap{
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
   table{
     width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
+    min-width: 900px;
     border-collapse: collapse;
-    border: 1px solid var(--line);
+    border: 2px solid var(--line);
+    background: var(--bg);
   }
   td{
-    border: 1px solid var(--line-soft);
-    padding: 14px 16px;
-    font-size: .92rem;
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+    border-color: var(--line-soft);
+    padding: 12px 14px;
+    font-size: .88rem;
     line-height: 1.35;
     vertical-align: middle;
     transition: background .25s, border-color .25s;
   }
   td.full{ text-align: center; font-weight: 700; background: rgba(255,255,255,0.03); }
   td.ing{ text-align: left; }
-  td.step{ text-align: center; }
-  td.step .prep{ display: block; color: var(--text-dim); }
-  td.step .cook{ display: block; color: var(--text); font-weight: 600; margin-top: 6px; }
+  td.prep{ text-align: center; color: var(--text-dim); }
+  td.cook{ text-align: center; color: var(--text); font-weight: 600; }
+  td.gap{ border-right: none; }
   td.final{ text-align: center; font-weight: 600; }
 
   .qty{ color: var(--brand-gold); font-weight: 700; }
@@ -146,28 +153,43 @@
   <button id="plusBtn">+</button>
 </div>
 
+<div class="table-wrap">
 <table>
-  <tr><td class="full" data-step="1" colspan="3">Poner a hervir agua abundante con sal para la pasta</td></tr>
-  <tr><td class="full" data-step="1" colspan="3">Batir las yemas con el pecorino y abundante pimienta negra hasta formar una crema</td></tr>
+  <tr><td class="full" data-step="1" colspan="8">Poner a hervir agua abundante con sal para la pasta</td></tr>
+  <tr><td class="full" data-step="1" colspan="8">Batir las yemas con el pecorino y abundante pimienta negra hasta formar una crema</td></tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="150" data-unit="g">150</span> g guanciale, en tiras o dados</td>
-    <td class="step" data-step="2"><span class="prep">cortar en tiras o dados</span><span class="cook">dorar en una sartén sin aceite a fuego medio 5–6 min hasta que suelte la grasa y quede crujiente · retirar del fuego</span></td>
+    <td class="prep" data-step="2">cortar en tiras o dados</td>
+    <td class="cook" data-step="2">dorar en una sartén sin aceite a fuego medio 5–6 min hasta que suelte la grasa y quede crujiente · retirar del fuego</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
     <td class="final" data-step="5" rowspan="5">Servir inmediatamente con más pecorino y pimienta negra recién molida por encima</td>
   </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="400" data-unit="g">400</span> g espaguetis</td>
-    <td class="step" data-step="3"><span class="prep">cocer en el agua hirviendo según el paquete, reservando un poco de agua de cocción</span><span class="cook">escurrir y añadir a la sartén del guanciale, fuera del fuego</span></td>
+    <td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="3">cocer en el agua hirviendo según el paquete, reservando un poco de agua de cocción</td>
+    <td class="cook" data-step="3">escurrir y añadir a la sartén del guanciale, fuera del fuego</td>
+    <td class="gap"></td><td class="gap"></td>
   </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="6" data-unit="ud" data-decimals="0">6</span> yemas de huevo</td>
-    <td class="step" data-step="4" rowspan="3"><span class="prep">batir juntos</span><span class="cook">verter sobre la pasta fuera del fuego y mezclar rápido, añadiendo agua de cocción hasta conseguir una crema untuosa</span></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="4" rowspan="3">batir juntos</td>
+    <td class="cook" data-step="4" rowspan="3">verter sobre la pasta fuera del fuego y mezclar rápido, añadiendo agua de cocción hasta conseguir una crema untuosa</td>
   </tr>
-  <tr><td class="ing"><span class="qty" data-base="100" data-unit="g">100</span> g pecorino romano, rallado</td></tr>
-  <tr><td class="ing">Pimienta negra, abundante y recién molida</td></tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="100" data-unit="g">100</span> g pecorino romano, rallado</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
+  <tr>
+    <td class="ing">Pimienta negra, abundante y recién molida</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
 </table>
+</div>
 
 <div class="nav">
   <button id="prevBtn">◀ Paso anterior</button>

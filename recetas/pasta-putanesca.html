@@ -73,26 +73,33 @@
     font-size: .95rem;
   }
 
+  .table-wrap{
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
   table{
     width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
+    min-width: 980px;
     border-collapse: collapse;
-    border: 1px solid var(--line);
+    border: 2px solid var(--line);
+    background: var(--bg);
   }
   td{
-    border: 1px solid var(--line-soft);
-    padding: 14px 16px;
-    font-size: .92rem;
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+    border-color: var(--line-soft);
+    padding: 12px 14px;
+    font-size: .88rem;
     line-height: 1.35;
     vertical-align: middle;
     transition: background .25s, border-color .25s;
   }
   td.full{ text-align: center; font-weight: 700; background: rgba(255,255,255,0.03); }
   td.ing{ text-align: left; }
-  td.step{ text-align: center; }
-  td.step .prep{ display: block; color: var(--text-dim); }
-  td.step .cook{ display: block; color: var(--text); font-weight: 600; margin-top: 6px; }
+  td.prep{ text-align: center; color: var(--text-dim); }
+  td.cook{ text-align: center; color: var(--text); font-weight: 600; }
+  td.gap{ border-right: none; }
   td.final{ text-align: center; font-weight: 600; }
 
   .qty{ color: var(--brand-gold); font-weight: 700; }
@@ -146,39 +153,66 @@
   <button id="plusBtn">+</button>
 </div>
 
+<div class="table-wrap">
 <table>
-  <tr><td class="full" data-step="1" colspan="3">Poner a hervir agua abundante con sal para la pasta</td></tr>
+  <tr><td class="full" data-step="1" colspan="10">Poner a hervir agua abundante con sal para la pasta</td></tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="60" data-unit="ml">60</span> ml AOVE</td>
-    <td class="step" data-step="2" rowspan="4"><span class="prep">laminar / picar</span><span class="cook">calentar el aceite a fuego medio y sofreír el ajo, la guindilla y las anchoas 2 min, hasta que las anchoas se deshagan</span></td>
+    <td class="prep" data-step="2" rowspan="4">laminar el ajo, trocear la guindilla y escurrir las anchoas</td>
+    <td class="cook" data-step="2" rowspan="4">calentar el aceite a fuego medio y sofreír el ajo, la guindilla y las anchoas 2 min, hasta que las anchoas se deshagan</td>
+    <td class="cook" data-step="3" rowspan="5">añadir el tomate y cocer 15 min más a fuego medio</td>
+    <td class="cook" data-step="4" rowspan="7">incorporar las aceitunas y las alcaparras y cocer 5 min más</td>
+    <td class="gap"></td>
+    <td class="cook" data-step="5" rowspan="8">escurrir y mezclar con la salsa, aflojando con el agua de cocción si hace falta</td>
+    <td class="gap"></td>
+    <td class="cook" data-step="6" rowspan="9">espolvorear el perejil por encima al servir</td>
     <td class="final" data-step="7" rowspan="9">Servir inmediatamente bien caliente, con un chorrito de AOVE</td>
   </tr>
-  <tr><td class="ing"><span class="qty" data-base="3" data-unit="ud" data-decimals="0">3</span> dientes de ajo, laminados</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="6" data-unit="ud" data-decimals="0">6</span> filetes de anchoa en aceite</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> guindilla seca</td></tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="3" data-unit="ud" data-decimals="0">3</span> dientes de ajo, laminados</td>
+    <td class="gap"></td><td class="gap"></td>
+  </tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="6" data-unit="ud" data-decimals="0">6</span> filetes de anchoa en aceite</td>
+    <td class="gap"></td><td class="gap"></td>
+  </tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> guindilla seca</td>
+    <td class="gap"></td><td class="gap"></td>
+  </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="400" data-unit="g">400</span> g tomate triturado</td>
-    <td class="step" data-step="3"><span class="prep">tener listo</span><span class="cook">añadir el tomate y cocer 15 min a fuego medio</span></td>
+    <td class="gap"></td><td class="gap"></td>
+    <td class="gap"></td><td class="gap"></td>
   </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="100" data-unit="g">100</span> g aceitunas negras, deshuesadas</td>
-    <td class="step" data-step="4" rowspan="2"><span class="prep">tener listas</span><span class="cook">incorporar a la salsa y cocer 5 min más</span></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="gap"></td><td class="gap"></td>
   </tr>
-  <tr><td class="ing"><span class="qty" data-base="30" data-unit="g">30</span> g alcaparras</td></tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="30" data-unit="g">30</span> g alcaparras</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="gap"></td><td class="gap"></td>
+  </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="400" data-unit="g">400</span> g espaguetis</td>
-    <td class="step" data-step="5"><span class="prep">cocer en el agua hirviendo según el paquete, reservando un poco de agua de cocción</span><span class="cook">escurrir y mezclar con la salsa, aflojando con el agua de cocción si hace falta</span></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="5">cocer en agua hirviendo aparte según el paquete, reservando un poco de agua de cocción</td>
+    <td class="gap"></td>
   </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="20" data-unit="g">20</span> g perejil fresco, picado</td>
-    <td class="step" data-step="6"><span class="prep">picar</span><span class="cook">espolvorear por encima al servir</span></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="6">picar</td>
   </tr>
 </table>
+</div>
 
 <div class="nav">
   <button id="prevBtn">◀ Paso anterior</button>

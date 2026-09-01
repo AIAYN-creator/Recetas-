@@ -73,26 +73,33 @@
     font-size: .95rem;
   }
 
+  .table-wrap{
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
   table{
     width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
+    min-width: 1100px;
     border-collapse: collapse;
-    border: 1px solid var(--line);
+    border: 2px solid var(--line);
+    background: var(--bg);
   }
   td{
-    border: 1px solid var(--line-soft);
-    padding: 14px 16px;
-    font-size: .92rem;
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+    border-color: var(--line-soft);
+    padding: 12px 14px;
+    font-size: .88rem;
     line-height: 1.35;
     vertical-align: middle;
     transition: background .25s, border-color .25s;
   }
   td.full{ text-align: center; font-weight: 700; background: rgba(255,255,255,0.03); }
   td.ing{ text-align: left; }
-  td.step{ text-align: center; }
-  td.step .prep{ display: block; color: var(--text-dim); }
-  td.step .cook{ display: block; color: var(--text); font-weight: 600; margin-top: 6px; }
+  td.prep{ text-align: center; color: var(--text-dim); }
+  td.cook{ text-align: center; color: var(--text); font-weight: 600; }
+  td.gap{ border-right: none; }
   td.final{ text-align: center; font-weight: 600; }
 
   .qty{ color: var(--brand-gold); font-weight: 700; }
@@ -146,62 +153,91 @@
   <button id="plusBtn">+</button>
 </div>
 
+<div class="table-wrap">
 <table>
-  <tr><td class="full" data-step="1" colspan="3">Tener el agua caliente aparte y las verduras limpias y troceadas</td></tr>
-  <tr><td class="full" data-step="1" colspan="3">Salpimentar el pollo y el conejo, secarlos bien</td></tr>
+  <tr><td class="full" data-step="1" colspan="12">Tener el agua caliente aparte y las verduras limpias y troceadas</td></tr>
+  <tr><td class="full" data-step="1" colspan="12">Salpimentar el pollo y el conejo, secarlos bien</td></tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="100" data-unit="ml">100</span> ml aceite de oliva virgen extra</td>
-    <td class="step" data-step="2" rowspan="3"><span class="prep">tener listo en la paellera</span><span class="cook">calentar a fuego fuerte y dorar el pollo y el conejo por tandas, 10–12 min · reservar</span></td>
-    <td class="final" data-step="7" rowspan="12">Cocer 10 min a fuego fuerte sin remover + 8–10 min a fuego medio-suave, hasta que el arroz esté en su punto y el caldo se haya consumido · apagar, tapar con un paño y dejar reposar 5 min · servir con gajos de limón aparte</td>
+    <td class="prep" data-step="2" rowspan="3">tener listo en la paellera</td>
+    <td class="cook" data-step="2" rowspan="3">calentar a fuego fuerte y dorar el pollo y el conejo por tandas, 10–12 min · reservar</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="final" data-step="8" rowspan="12">Cocer 10 min a fuego fuerte sin remover + 8–10 min a fuego medio-suave, hasta que el arroz esté en su punto y el caldo se haya consumido · apagar, tapar con un paño y dejar reposar 5 min · servir con gajos de limón aparte</td>
   </tr>
-
   <tr>
     <td class="ing"><span class="qty" data-base="500" data-unit="g">500</span> g pollo troceado (muslo y contramuslo)</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
   </tr>
   <tr>
     <td class="ing"><span class="qty" data-base="400" data-unit="g">400</span> g conejo troceado</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
   </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="150" data-unit="g">150</span> g garrofón</td>
-    <td class="step" data-step="3" rowspan="2"><span class="prep">limpiar y trocear</span><span class="cook">añadir al aceite junto con las carnes reservadas y sofreír 5 min</span></td>
+    <td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="3" rowspan="2">limpiar y trocear</td>
+    <td class="cook" data-step="3" rowspan="2">añadir al aceite junto con las carnes reservadas y sofreír 5 min</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
   </tr>
-  <tr><td class="ing"><span class="qty" data-base="200" data-unit="g">200</span> g judía verde plana (bajoqueta)</td></tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="200" data-unit="g">200</span> g judía verde plana (bajoqueta)</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="150" data-unit="g">150</span> g tomate maduro, rallado</td>
-    <td class="step" data-step="4" rowspan="2"><span class="prep">rallar / tener listo</span><span class="cook">incorporar el tomate y el pimentón, sofreír 2 min sin que se queme</span></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="4" rowspan="2">rallar / tener listo</td>
+    <td class="cook" data-step="4" rowspan="2">incorporar el tomate y el pimentón, sofreír 2 min sin que se queme</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
   </tr>
-  <tr><td class="ing"><span class="qty" data-base="1" data-unit="cda" data-decimals="1">1</span> cda pimentón dulce</td></tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="1" data-unit="cda" data-decimals="1">1</span> cda pimentón dulce</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="1400" data-unit="ml">1400</span> ml agua</td>
-    <td class="step" data-step="5" rowspan="3"><span class="prep">calentar aparte</span><span class="cook">verter el agua, añadir el azafrán y el romero, llevar a hervor y cocer 15–20 min</span></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="5" rowspan="3">calentar aparte</td>
+    <td class="cook" data-step="5" rowspan="3">verter el agua, añadir el azafrán y el romero, llevar a hervor y cocer 15–20 min</td>
+    <td class="gap"></td><td class="gap"></td>
   </tr>
-  <tr><td class="ing"><span class="qty" data-base="1" data-unit="pizca" data-decimals="0">1</span> pizca de azafrán en hebras</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> ramita de romero</td></tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="1" data-unit="pizca" data-decimals="0">1</span> pizca de azafrán en hebras</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> ramita de romero</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="400" data-unit="g">400</span> g arroz bomba</td>
-    <td class="step" data-step="6"><span class="prep">tener listo</span><span class="cook">repartir de forma uniforme por toda la paellera, sin remover más</span></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="cook" data-step="6">repartir de forma uniforme por toda la paellera, sin remover más</td>
+    <td class="gap"></td>
   </tr>
 
   <tr>
     <td class="ing">Sal, al gusto</td>
-    <td class="step" data-step="6"><span class="prep">—</span><span class="cook">ajustar el punto de sal durante el sofrito y el hervor</span></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="cook" data-step="7">ajustar el punto de sal durante el sofrito y el hervor</td>
   </tr>
 </table>
+</div>
 
 <div class="nav">
   <button id="prevBtn">◀ Paso anterior</button>
-  <span class="label" id="stepLabel">Paso 1 de 7</span>
+  <span class="label" id="stepLabel">Paso 1 de 8</span>
   <button id="nextBtn">Paso siguiente ▶</button>
 </div>
 
 <script>
   // --- navegación de pasos ---
-  const totalSteps = 7;
+  const totalSteps = 8;
   let current = 1;
   const cells = document.querySelectorAll('[data-step]');
   const prevBtn = document.getElementById('prevBtn');

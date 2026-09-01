@@ -73,26 +73,33 @@
     font-size: .95rem;
   }
 
+  .table-wrap{
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
   table{
     width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
+    min-width: 980px;
     border-collapse: collapse;
-    border: 1px solid var(--line);
+    border: 2px solid var(--line);
+    background: var(--bg);
   }
   td{
-    border: 1px solid var(--line-soft);
-    padding: 14px 16px;
-    font-size: .92rem;
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+    border-color: var(--line-soft);
+    padding: 12px 14px;
+    font-size: .88rem;
     line-height: 1.35;
     vertical-align: middle;
     transition: background .25s, border-color .25s;
   }
   td.full{ text-align: center; font-weight: 700; background: rgba(255,255,255,0.03); }
   td.ing{ text-align: left; }
-  td.step{ text-align: center; }
-  td.step .prep{ display: block; color: var(--text-dim); }
-  td.step .cook{ display: block; color: var(--text); font-weight: 600; margin-top: 6px; }
+  td.prep{ text-align: center; color: var(--text-dim); }
+  td.cook{ text-align: center; color: var(--text); font-weight: 600; }
+  td.gap{ border-right: none; }
   td.final{ text-align: center; font-weight: 600; }
 
   .qty{ color: var(--brand-gold); font-weight: 700; }
@@ -146,38 +153,74 @@
   <button id="plusBtn">+</button>
 </div>
 
+<div class="table-wrap">
 <table>
-  <tr><td class="full" data-step="1" colspan="3">Salpimentar el magro</td></tr>
-  <tr><td class="full" data-step="1" colspan="3">Pelar y cortar las patatas en bastones</td></tr>
+  <tr><td class="full" data-step="1" colspan="10">Salpimentar el magro</td></tr>
+  <tr><td class="full" data-step="1" colspan="10">Pelar y cortar las patatas en bastones</td></tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="40" data-unit="ml">40</span> ml AOVE</td>
-    <td class="step" data-step="2" rowspan="2"><span class="prep">trocear en tacos</span><span class="cook">dorar en el aceite a fuego fuerte 5–6 min · reservar</span></td>
+    <td class="prep" data-step="2" rowspan="2">trocear en tacos</td>
+    <td class="cook" data-step="2" rowspan="2">dorar en el aceite a fuego fuerte 5–6 min · reservar</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
     <td class="final" data-step="6" rowspan="11">Servir el magro con tomate acompañado de las patatas fritas recién hechas</td>
   </tr>
-  <tr><td class="ing"><span class="qty" data-base="600" data-unit="g">600</span> g magro de cerdo, en tacos</td></tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="600" data-unit="g">600</span> g magro de cerdo, en tacos</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="100" data-unit="g">100</span> g cebolla, picada</td>
-    <td class="step" data-step="3" rowspan="3"><span class="prep">picar fino</span><span class="cook">pochar en el mismo aceite 8–10 min</span></td>
+    <td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="3" rowspan="3">picar fino</td>
+    <td class="cook" data-step="3" rowspan="3">pochar en el mismo aceite 8–10 min</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
   </tr>
-  <tr><td class="ing"><span class="qty" data-base="100" data-unit="g">100</span> g pimiento verde, picado</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="2" data-unit="ud" data-decimals="0">2</span> dientes de ajo, picados</td></tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="100" data-unit="g">100</span> g pimiento verde, picado</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="2" data-unit="ud" data-decimals="0">2</span> dientes de ajo, picados</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="400" data-unit="g">400</span> g tomate triturado</td>
-    <td class="step" data-step="4" rowspan="4"><span class="prep">tener listo</span><span class="cook">añadir el tomate, el laurel, el azúcar y la sal, y sofreír 15 min; incorporar el magro reservado y cocer 10 min más a fuego suave</span></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="4" rowspan="4">tener listo</td>
+    <td class="cook" data-step="4" rowspan="4">añadir el tomate, el laurel, el azúcar y la sal, y sofreír 15 min; incorporar el magro reservado y cocer 10 min más a fuego suave</td>
+    <td class="gap"></td><td class="gap"></td>
   </tr>
-  <tr><td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> hoja de laurel</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="1" data-unit="cdta" data-decimals="1">1</span> cdta azúcar (corta la acidez del tomate)</td></tr>
-  <tr><td class="ing">Sal y pimienta, al gusto</td></tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> hoja de laurel</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="gap"></td><td class="gap"></td>
+  </tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="1" data-unit="cdta" data-decimals="1">1</span> cdta azúcar (corta la acidez del tomate)</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="gap"></td><td class="gap"></td>
+  </tr>
+  <tr>
+    <td class="ing">Sal y pimienta, al gusto</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="gap"></td><td class="gap"></td>
+  </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="500" data-unit="ml">500</span> ml aceite de oliva o girasol, para freír</td>
-    <td class="step" data-step="5" rowspan="2"><span class="prep">tener caliente / cortar en bastones</span><span class="cook">freír las patatas en el aceite caliente 8–10 min hasta dorar · escurrir sobre papel absorbente y salar</span></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="5" rowspan="2">tener caliente / cortar en bastones</td>
+    <td class="cook" data-step="5" rowspan="2">freír las patatas en el aceite caliente 8–10 min hasta dorar · escurrir sobre papel absorbente y salar</td>
   </tr>
-  <tr><td class="ing"><span class="qty" data-base="800" data-unit="g">800</span> g patatas, peladas y en bastones</td></tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="800" data-unit="g">800</span> g patatas, peladas y en bastones</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
 </table>
+</div>
 
 <div class="nav">
   <button id="prevBtn">◀ Paso anterior</button>

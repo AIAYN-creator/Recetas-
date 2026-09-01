@@ -73,26 +73,33 @@
     font-size: .95rem;
   }
 
+  .table-wrap{
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
   table{
     width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
+    min-width: 1100px;
     border-collapse: collapse;
-    border: 1px solid var(--line);
+    border: 2px solid var(--line);
+    background: var(--bg);
   }
   td{
-    border: 1px solid var(--line-soft);
-    padding: 14px 16px;
-    font-size: .92rem;
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+    border-color: var(--line-soft);
+    padding: 12px 14px;
+    font-size: .88rem;
     line-height: 1.35;
     vertical-align: middle;
     transition: background .25s, border-color .25s;
   }
   td.full{ text-align: center; font-weight: 700; background: rgba(255,255,255,0.03); }
   td.ing{ text-align: left; }
-  td.step{ text-align: center; }
-  td.step .prep{ display: block; color: var(--text-dim); }
-  td.step .cook{ display: block; color: var(--text); font-weight: 600; margin-top: 6px; }
+  td.prep{ text-align: center; color: var(--text-dim); }
+  td.cook{ text-align: center; color: var(--text); font-weight: 600; }
+  td.gap{ border-right: none; }
   td.final{ text-align: center; font-weight: 600; }
 
   .qty{ color: var(--brand-gold); font-weight: 700; }
@@ -146,42 +153,76 @@
   <button id="plusBtn">+</button>
 </div>
 
+<div class="table-wrap">
 <table>
-  <tr><td class="full" data-step="1" colspan="3">Tener el fumet de pescado hirviendo aparte</td></tr>
-  <tr><td class="full" data-step="1" colspan="3">Secar bien el pescado y el marisco</td></tr>
+  <tr><td class="full" data-step="1" colspan="12">Tener el fumet de pescado hirviendo aparte</td></tr>
+  <tr><td class="full" data-step="1" colspan="12">Secar bien el pescado y el marisco</td></tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="100" data-unit="ml">100</span> ml AOVE</td>
-    <td class="step" data-step="2" rowspan="4"><span class="prep">pelar / trocear y tener listo</span><span class="cook">dorar brevemente por tandas en el aceite, 2–3 min · reservar</span></td>
+    <td class="prep" data-step="2" rowspan="4">pelar / trocear y tener listo</td>
+    <td class="cook" data-step="2" rowspan="4">dorar brevemente por tandas en el aceite, 2–3 min · reservar</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
     <td class="final" data-step="7" rowspan="11">10 min a fuego fuerte + 8 min a fuego suave · apagar, tapar con un paño y reposar 5 min · servir con alioli aparte</td>
   </tr>
-  <tr><td class="ing"><span class="qty" data-base="300" data-unit="g">300</span> g gambas peladas (o langostinos)</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="300" data-unit="g">300</span> g rape, en trozos, sin piel ni espinas</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="200" data-unit="g">200</span> g calamar o sepia limpia, en anillas</td></tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="300" data-unit="g">300</span> g gambas peladas (o langostinos)</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="300" data-unit="g">300</span> g rape, en trozos, sin piel ni espinas</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="200" data-unit="g">200</span> g calamar o sepia limpia, en anillas</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="150" data-unit="g">150</span> g tomate maduro, rallado</td>
-    <td class="step" data-step="3" rowspan="3"><span class="prep">rallar / picar</span><span class="cook">sofreír en el mismo aceite 8–10 min hasta que el tomate oscurezca</span></td>
+    <td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="3" rowspan="3">rallar / picar</td>
+    <td class="cook" data-step="3" rowspan="3">sofreír en el mismo aceite 8–10 min hasta que el tomate oscurezca</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
   </tr>
-  <tr><td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> ñora hidratada (o 1 cdta pimentón dulce)</td></tr>
-  <tr><td class="ing"><span class="qty" data-base="2" data-unit="ud" data-decimals="0">2</span> dientes de ajo, picados</td></tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="1" data-unit="ud" data-decimals="0">1</span> ñora hidratada (o 1 cdta pimentón dulce)</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="2" data-unit="ud" data-decimals="0">2</span> dientes de ajo, picados</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="320" data-unit="g">320</span> g arroz bomba</td>
-    <td class="step" data-step="4" rowspan="2"><span class="prep">tener listo</span><span class="cook">añadir al sofrito y nacarar 2 min removiendo</span></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="4" rowspan="2">tener listo</td>
+    <td class="cook" data-step="4" rowspan="2">añadir al sofrito y nacarar 2 min removiendo</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
   </tr>
-  <tr><td class="ing"><span class="qty" data-base="1" data-unit="pizca" data-decimals="0">1</span> pizca de azafrán</td></tr>
+  <tr>
+    <td class="ing"><span class="qty" data-base="1" data-unit="pizca" data-decimals="0">1</span> pizca de azafrán</td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+  </tr>
 
   <tr>
     <td class="ing"><span class="qty" data-base="1000" data-unit="ml">1000</span> ml fumet de pescado</td>
-    <td class="step" data-step="5"><span class="prep">mantener hirviendo aparte</span><span class="cook">verter de golpe, incorporar el marisco y el pescado reservados · no remover más</span></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="5">mantener hirviendo aparte</td>
+    <td class="cook" data-step="5">verter de golpe, incorporar el marisco y el pescado reservados · no remover más</td>
+    <td class="gap"></td><td class="gap"></td>
   </tr>
 
   <tr>
     <td class="ing">Sal, al gusto</td>
-    <td class="step" data-step="6"><span class="prep">—</span><span class="cook">ajustar de sal durante el sofrito y el fumet</span></td>
+    <td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td><td class="gap"></td>
+    <td class="prep" data-step="6">—</td>
+    <td class="cook" data-step="6">ajustar de sal durante el sofrito y el fumet</td>
   </tr>
 </table>
+</div>
 
 <div class="nav">
   <button id="prevBtn">◀ Paso anterior</button>
