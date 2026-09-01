@@ -105,6 +105,39 @@ mano y difícil de ver a ojo:
 
 Se ejecuta solo en cada Pull Request.
 
+## Hoja de ruta
+
+### v1.5.0 — pulir lo que se ve y quitar el doble trabajo
+
+- **Cantidades sin decimales de adorno.** Ahora mismo todas las recetas muestran
+  `150.0 g` o `250.0 ml`: `data-decimals` vale 1 por defecto y el redondeo se
+  aplica también a los números enteros. Es un `if` en `renderServings` que
+  mejora las 13 páginas a la vez.
+- **Que no se apague la pantalla.** `navigator.wakeLock` mientras la receta está
+  abierta. Hoy el móvil se bloquea a la media res de un sofrito y hay que
+  desbloquearlo con las manos pringadas.
+- **Índice autogenerado.** Que cada receta declare sus metadatos en su propia
+  cabecera y que un script construya la lista `RECIPES` leyendo los archivos.
+  Añadir una receta pasa a ser **editar un solo archivo** en vez de dos, que es
+  donde se equivoca todo el mundo, y desaparece la duplicación que hoy hay que
+  vigilar a mano: el título vive en tres sitios y el tiempo en dos.
+
+### v2.0.0 — que salga de la cocina y aguante sin cobertura
+
+- **Standalone.** Un manifest y un service worker para que el recetario se
+  instale como una app y siga abriendo sin datos. Icono y viewport ya están; es
+  el paso que falta.
+- **Lista de la compra.** Marcar varias recetas, cada una con sus comensales, y
+  obtener la lista combinada de ingredientes, sumando los 400 g de tomate de una
+  con los 300 de otra. Los datos ya están en las tablas (`data-base`,
+  `data-unit`): solo hay que juntarlos. Es lo que convierte el recetario en algo
+  que se usa **antes** de cocinar, no solo durante.
+
+Lo que no está previsto: cuentas de usuario, valoraciones, comentarios ni base
+de datos. En cuanto haya un backend se pierde lo que hace bueno a esto —cero
+mantenimiento, cero coste y nada que se pueda caer—, y el modelo de archivos
+estáticos con revisión humana en el merge es una decisión, no una limitación.
+
 ## La marca
 
 Los assets viven en `assets/` y se generan desde un único script, para que la
